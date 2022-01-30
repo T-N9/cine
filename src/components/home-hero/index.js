@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles/HomeHero.module.scss';
 import useFetch from '../../hooks/useFetch';
 import SlideItem from './SlideItem';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,7 +20,7 @@ import SwiperCore, {
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const HomeHero = () => {
-    const [getData, setGetData] = useState(null)
+    const [getData, setGetData] = useState(null);
     const { loading, data, error } = useFetch('https://api.themoviedb.org/3/trending/all/day?api_key=68d49bbc8d40fff0d6cafaa7bfd48072');
 
     useEffect(() => {
@@ -27,9 +28,18 @@ const HomeHero = () => {
             setGetData(data.results)
         }
         // console.log(getData);
-    })
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :</p>;
+    });
+
+    if (loading) return (
+        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+            <CircularProgress/>
+        </section>
+    );
+    if (error) return (
+        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+            <h1>⚠️ Error getting resources! ⚠️</h1>
+        </section>
+    );
 
     let slideItems;
     if (getData != null) {

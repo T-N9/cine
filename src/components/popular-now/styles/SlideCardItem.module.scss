@@ -1,0 +1,43 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.slide_card_item {
+    padding: calUni(20px) 0;
+    cursor: pointer;
+    user-select: none;
+    
+    .wrapper {
+        width: calUni(200px);
+        position: relative;
+        // margin: auto;
+    }
+    .image {
+        width: calUni(200px);
+        border-radius: 10px;
+        margin-bottom: 5px;
+        box-shadow: rgba($clr-light, 0.2) 0px 8px 24px;
+    }
+
+    .content {
+        padding: 5px 10px;
+    }
+
+    .title {
+        font-size: $fs-18;
+    }
+
+    .vote {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 40px;
+        height: 40px;
+        background-color: $clr-dark;
+        border-radius: 100px;
+        border: 1px solid $clr-light;
+        font-weight: 700;
+
+        @include flex-center;
+    }
+}

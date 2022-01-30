@@ -10,3 +10,18 @@
         padding-top: calUni(94px);
     }
 }
+
+.error_loading_hero {
+    height: 600px;
+    @include m-breakpoint-up(lmedium) {
+        height: 750px;
+    }
+
+    @include m-breakpoint-up(xlarge) {
+        height: 600px;
+    }
+
+    @include m-breakpoint-up(slarge) {
+        height: 825px;
+    }
+}

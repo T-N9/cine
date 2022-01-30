@@ -105,3 +105,8 @@ text-align: center;
     padding: 2.5px 10px !important;
     border-color: $clr-secondary !important;
 }
+
+.error_loading_section {
+    color: $clr-danger;
+    @include flex-center;
+}
