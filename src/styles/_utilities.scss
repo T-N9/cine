@@ -110,3 +110,20 @@ text-align: center;
     color: $clr-danger;
     @include flex-center;
 }
+
+.error_loading_slides {
+    min-height: calUni(300px);
+    @include flex-center;
+}
+
+.slide_is_showed {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide_is_hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+}

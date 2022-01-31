@@ -5,4 +5,16 @@
 .popular_now {
     color: $clr-wah;
 
+    .popular_wrapper {
+        position: relative;
+        min-height: calUni(500px);
+
+        & > * {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: all 200ms ease-in;
+        }
+    }
 }

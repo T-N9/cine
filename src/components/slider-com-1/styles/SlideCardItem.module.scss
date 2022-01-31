@@ -4,13 +4,14 @@
 
 .slide_card_item {
     padding: calUni(20px) 0;
-    cursor: pointer;
-    user-select: none;
+    
     
     .wrapper {
         width: calUni(200px);
         position: relative;
         // margin: auto;
+        cursor: pointer;
+    user-select: none;
     }
     .image {
         width: calUni(200px);

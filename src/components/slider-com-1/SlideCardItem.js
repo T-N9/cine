@@ -90,7 +90,7 @@ const SlideCardItem = (props) => {
                 />
                 <div className={styles.content}>
                     <h1 className={styles.title}>
-                        {props.title}
+                        {props.title ? props.title : props.name}
                     </h1>
                     <p className={styles.vote}>{props.vote_avg}</p>
                     {/* <p className={styles.date}>{props.release_date}</p> */}
