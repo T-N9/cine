@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cine/build/static/css/main.7a5abcd5.css",
-    "main.js": "/cine/build/static/js/main.9ca5c3b1.js",
+    "main.css": "/cine/build/static/css/main.38e763f8.css",
+    "main.js": "/cine/build/static/js/main.df25cce5.js",
     "static/media/cine-logo.png": "/cine/build/static/media/cine-logo.9d85ceb5dba5afca71ff.png",
     "index.html": "/cine/build/index.html",
-    "main.7a5abcd5.css.map": "/cine/build/static/css/main.7a5abcd5.css.map",
-    "main.9ca5c3b1.js.map": "/cine/build/static/js/main.9ca5c3b1.js.map"
+    "main.38e763f8.css.map": "/cine/build/static/css/main.38e763f8.css.map",
+    "main.df25cce5.js.map": "/cine/build/static/js/main.df25cce5.js.map"
   },
   "entrypoints": [
-    "static/css/main.7a5abcd5.css",
-    "static/js/main.9ca5c3b1.js"
+    "static/css/main.38e763f8.css",
+    "static/js/main.df25cce5.js"
   ]
 }

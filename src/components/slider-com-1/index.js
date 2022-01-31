@@ -5,8 +5,9 @@ import styles from './styles/SliderCom1.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/navigation";
 // import required modules
-import { FreeMode } from "swiper";
+import { FreeMode , Navigation} from "swiper";
 
 const SliderCom1 = (props) => {
 
@@ -36,12 +37,13 @@ const SliderCom1 = (props) => {
             return (
                 <SwiperSlide key={item.id}>
                     <SlideCardItem
-
+                        id = {item.id}
                         title={item.title}
                         name = {item.name}
                         image={item.poster_path}
                         vote_avg={item.vote_average}
                         release_date={item.release_date}
+                        media_type = {item.media_type}
                     />
                 </SwiperSlide>
             )
@@ -51,15 +53,18 @@ const SliderCom1 = (props) => {
     return (
         <>
             <Swiper
-                slidesPerView={2}
-                spaceBetween={130}
-                freeMode={true}
-                modules={[FreeMode]}
+                slidesPerView={1.5}
+                spaceBetween={0}
+                // freeMode={true}
+                // modules={[FreeMode]}
+                // navigation={true}
+                // modules={[Navigation]}
+                centeredSlides={true}
                 className="mySwiper"
                 breakpoints={{
                     1366 : {
                         "slidesPerView": 5,
-                        "spaceBetween" : 0,
+                        "spaceBetween" : -50,
                         "centeredSlides" : false
                     },
                     1024 : {

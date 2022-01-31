@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles/SlideCardItem.module.scss';
 
 const SlideCardItem = (props) => {
@@ -80,22 +81,27 @@ const SlideCardItem = (props) => {
         "name": "Western"
         }
     ]
+
+    let media_type = props.media_type;
+    let route_type = media_type === 'tv' ? 'series' : 'movies';
     return (
         <div className={styles.slide_card_item}>
-            <div className={styles.wrapper}>
-                <img 
-                src={`https://www.themoviedb.org/t/p/original/${props.image}`} 
-                alt={`${props.title} poster`} 
-                className={styles.image}
-                />
-                <div className={styles.content}>
-                    <h1 className={styles.title}>
-                        {props.title ? props.title : props.name}
-                    </h1>
-                    <p className={styles.vote}>{props.vote_avg}</p>
-                    {/* <p className={styles.date}>{props.release_date}</p> */}
+            <Link to={`/${route_type}/${props.id}`}>
+                <div className={styles.wrapper}>
+                    <img 
+                    src={`https://www.themoviedb.org/t/p/original/${props.image}`} 
+                    alt={`${props.title} poster`} 
+                    className={styles.image}
+                    />
+                    <div className={styles.content}>
+                        <h1 className={styles.title}>
+                            {props.title ? props.title : props.name}
+                        </h1>
+                        <p className={styles.vote}>{props.vote_avg}</p>
+                        {/* <p className={styles.date}>{props.release_date}</p> */}
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

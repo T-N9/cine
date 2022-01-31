@@ -48,11 +48,13 @@ const HomeHero = () => {
             return (
                 <SwiperSlide key={item.id}>
                     <SlideItem
+                        id = {item.id}
                         index = {getData.indexOf(item)}
                         backdrop_path={item.backdrop_path}
                         title={item.title}
                         overview={item.overview}
                         name={item.name}
+                        media_type = {item.media_type}
                     />
                 </SwiperSlide>
             )

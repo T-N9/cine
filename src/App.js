@@ -1,13 +1,19 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { NavBar } from './components';
-import { HomePage } from './pages';
+import { HomePage, MovieDetail, SeriesDetail } from './pages';
 
 const App = () => {
 
   return (
     <main>
       <NavBar/>
-      <HomePage/>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/movies/:id" element={<MovieDetail/>}/>
+        <Route path="/series/:id" element={<SeriesDetail/>}/>
+      </Routes>
+      
     </main>
   );
 }

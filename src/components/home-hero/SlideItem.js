@@ -1,8 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles/SlideItem.module.scss'
 import { Button } from '@mui/material';
 
 const SlideItem = (props) => {
+    let media_type = props.media_type;
+    let route_type = media_type === 'tv' ? 'series' : 'movies';
+
     return (
         <div className={styles.slide_item} style={{backgroundImage : `url(https://www.themoviedb.org/t/p/original/${props.backdrop_path})`}}>
             <div className={`${styles.container_x_md} ${styles.slide_wrapper}`}>
@@ -16,9 +20,11 @@ const SlideItem = (props) => {
                     {props.overview}
                     </p>
 
-                    <Button variant='contained' className={styles.button}>
-                        View Detail
-                    </Button>
+                    <Link to={`/${route_type}/${props.id}`}>
+                        <Button variant='contained' className={styles.button}>
+                            View Detail
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>
