@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cine/build/static/css/main.38e763f8.css",
-    "main.js": "/cine/build/static/js/main.df25cce5.js",
-    "static/media/cine-logo.png": "/cine/build/static/media/cine-logo.9d85ceb5dba5afca71ff.png",
-    "index.html": "/cine/build/index.html",
-    "main.38e763f8.css.map": "/cine/build/static/css/main.38e763f8.css.map",
-    "main.df25cce5.js.map": "/cine/build/static/js/main.df25cce5.js.map"
+    "main.css": "/static/css/main.38e763f8.css",
+    "main.js": "/static/js/main.ed59530c.js",
+    "static/media/cine-logo.png": "/static/media/cine-logo.9d85ceb5dba5afca71ff.png",
+    "index.html": "/index.html",
+    "main.38e763f8.css.map": "/static/css/main.38e763f8.css.map",
+    "main.ed59530c.js.map": "/static/js/main.ed59530c.js.map"
   },
   "entrypoints": [
     "static/css/main.38e763f8.css",
-    "static/js/main.df25cce5.js"
+    "static/js/main.ed59530c.js"
   ]
 }

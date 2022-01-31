@@ -6,7 +6,7 @@ import { CircularProgress } from '@mui/material';
 const SeriesDetail = () => {
     let { id } = useParams();
     const [getData, setGetData] = useState(null);
-    const { loading, data, error } = useFetch(`http://api.themoviedb.org/3/tv/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos`);
+    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos`);
 
     useEffect(() => {
         if (data != null) {
