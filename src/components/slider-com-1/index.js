@@ -76,6 +76,9 @@ const SliderCom1 = (props) => {
                         "slidesPerView": 3,
                         "spaceBetween" : 30,
                         "centeredSlides" : false
+                    },
+                    360 : {
+                        "spaceBetween" : 30,
                     }
                 }}
             >{slideItems}
