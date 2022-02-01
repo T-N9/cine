@@ -6,8 +6,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
-// import required modules
-import { FreeMode , Navigation} from "swiper";
 
 const SliderCom1 = (props) => {
 
@@ -18,7 +16,7 @@ const SliderCom1 = (props) => {
         if (data != null) {
             setGetData(data.results)
         }
-    });
+    }, [data]);
 
     if (loading) return (
         <section className={`${styles.error_loading_section} ${styles.error_loading_slides}`}>
@@ -55,10 +53,6 @@ const SliderCom1 = (props) => {
             <Swiper
                 slidesPerView={1.5}
                 spaceBetween={0}
-                // freeMode={true}
-                // modules={[FreeMode]}
-                // navigation={true}
-                // modules={[Navigation]}
                 centeredSlides={true}
                 className="mySwiper"
                 breakpoints={{

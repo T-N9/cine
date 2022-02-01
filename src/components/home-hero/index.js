@@ -28,7 +28,7 @@ const HomeHero = () => {
             setGetData(data.results)
         }
         // console.log(getData);
-    });
+    }, [data]);
 
     if (loading) return (
         <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
@@ -66,17 +66,21 @@ const HomeHero = () => {
             <div>
                 <div>
                     <Swiper
-                        pagination={true}
                         className="mySwiper"
                         loop={true}
                         pagination={{
                             "clickable": true
                         }}
                         autoplay={{
-                            "delay": 5000,
+                            "delay": 10000,
                             "disableOnInteraction": false
                         }}
-                        speed={800}
+                        speed={400}
+                        breakpoints={{
+                            1366 : {
+                                "speed" : 800
+                            }
+                        }}
                     >
                         {
                             slideItems

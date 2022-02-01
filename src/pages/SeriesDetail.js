@@ -13,7 +13,7 @@ const SeriesDetail = () => {
             setGetData(data)
         }
         // console.log(getData);
-    });
+    }, [data]);
 
     let title;
     if(getData != null) {
