@@ -9,6 +9,10 @@
     left: 0;
     z-index: 5000;
     background-color: transparent;
+
+    @include m-breakpoint-down(large) {
+        position: fixed;
+    }
     .flex_box {
         display: flex;
         justify-content: space-between;
@@ -20,8 +24,13 @@
 
             @include m-breakpoint-down(small) {
                 width: 6.5625rem;
-                height: auto;
+                height: calUni(35.98px);
             }
+        }
+
+        .logo_small {
+            width: 5.5625rem !important;
+            height: auto !important;
         }
 
         .nav_items {
@@ -121,4 +130,9 @@
 
     }
 
+}
+
+.nav_small {
+    box-shadow: rgba($clr-primary, 0.16) 0px 1px 4px !important;
+    background-color: $clr-dark;
 }

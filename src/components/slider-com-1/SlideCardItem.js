@@ -82,6 +82,15 @@ const SlideCardItem = (props) => {
     //     }
     // ]
 
+    let vote_border;
+    if(props.vote_avg >= 7.5) {
+        vote_border = '#21E6C1';
+    } else if (props.vote_avg >= 6) {
+        vote_border = '#f1d900';
+    } else {
+        vote_border = '#FF304F';
+    }
+
     let media_type = props.media_type;
     let route_type = media_type === 'tv' ? 'series' : 'movies';
     return (
@@ -97,7 +106,7 @@ const SlideCardItem = (props) => {
                         <h1 className={styles.title}>
                             {props.title ? props.title : props.name}
                         </h1>
-                        <p className={styles.vote}>{props.vote_avg}</p>
+                        <p style={{'borderColor' : vote_border}} className={styles.vote}>{props.vote_avg}</p>
                         {/* <p className={styles.date}>{props.release_date}</p> */}
                     </div>
                 </div>

@@ -10,7 +10,7 @@ const navList = ["home", "movies", "series", "people", "browse"]
 
 const NavBar = () => {
     const [ toggle, setToggle ] = useState(false);
-    const {current} = useSelector((state) => state.navActivate);
+    const {current , logo_sm} = useSelector((state) => state.navActivate);
     const dispatch = useDispatch();
 
     function toggleHandler () {
@@ -40,11 +40,11 @@ const NavBar = () => {
     
 
     return (
-        <nav className={styles.nav_bar}>
+        <nav className={logo_sm ? `${styles.nav_bar} ${styles.nav_small}` : `${styles.nav_bar}`}>
             <div className={`${styles.container_x_sm} ${styles.container_y_1}`}>
                 <div className={styles.flex_box}>
                     <Link to="/" onClick={() => dispatch(activeNavItem("home"))}>
-                        <img className={styles.logo} src={logo} alt="CINE logo" />
+                        <img className={logo_sm ? `${styles.logo} ${styles.logo_small}` : `${styles.logo}`} src={logo} alt="CINE logo" />
                     </Link>
 
                     <div className={styles.nav_list}>
