@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './styles/DetailHero.module.scss';
-import { AccessTimeSharp } from '@mui/icons-material';
+import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
+import { Button } from '@mui/material';
+
 
 const DetailHero = (props) => {
-
 
     let backdrop_path, poster_path, release_year, runtime;
     if(props.backdrop_path !== undefined && props.poster_path !== undefined) {
@@ -56,6 +57,34 @@ const DetailHero = (props) => {
                                     {runtime}
                                 </p>
                             </div>
+                            <div className={styles.overview}>
+                                <h1>Overview</h1>
+                                <p>
+                                    {props.overview}
+                                </p>
+                            </div>
+                            <div className={styles.info}>
+                                <div>
+                                    <span className={styles.icon}>
+                                        <StarRateRounded/>
+                                    </span>
+                                    <h1>
+                                        {props.rating}
+                                    </h1>
+                                </div>
+
+                                <div>
+                                    <span className={styles.icon}>
+                                        <People/>
+                                    </span>
+                                    <h1>
+                                        {props.popularity}
+                                    </h1>
+                                </div>
+                            </div>
+                            <Button variant='outlined' className={styles.trailer_btn}>
+                                View Trailer
+                            </Button>
                         </div>
                     </div>
                 </div>

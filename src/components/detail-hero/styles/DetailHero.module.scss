@@ -13,7 +13,7 @@
         margin-top: calUni(67.98px);
     }
 
-    @include m-breakpoint-down(small) {
+    @include m-breakpoint-down(large) {
         background-position: center center;
         background-size: cover;
     }
@@ -28,23 +28,31 @@
         color: $clr-wah;
         height: 100%;
 
+        @include m-breakpoint-down(small) {
+            background: linear-gradient(90deg, rgba($clr-black, 0.8) 20%, rgba($clr-black, 0.8) 66.08%, rgba($clr-black, 0.5) 100%);
+        }
+
         .flex_section{
             display: flex;
 
-            @include m-breakpoint-down(large) {
+            @include m-breakpoint-down(small) {
                 flex-direction: column;
                 align-items: center;
             }
             .detail_poster {
             width: calUni(300px);
             border-radius: 10px;
+
+            @include m-breakpoint-down(small) {
+                width: calUni(200px);
+            }
             }
         }
 
         .detail_movie_content {
             margin-left: 2rem;
 
-            @include m-breakpoint-down(large) {
+            @include m-breakpoint-down(small) {
                 margin-left: 0;
                 margin-top: 2rem;
                 width: 100%;
@@ -52,13 +60,13 @@
 
             .detail_header {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 align-items: flex-end;
 
                 @include m-breakpoint-down(large) {
                     // flex-direction: column;
                     flex-wrap: wrap;
-                    align-items: flex-start;
+                    justify-content: flex-start;
                 }
 
                 h2 {
@@ -66,7 +74,7 @@
                     font-weight: normal;
 
                     @include m-breakpoint-down(large) {
-                        margin-left: 0;
+                        // margin-left: 0;
                     }
                 }
             }
@@ -107,6 +115,53 @@
                         width: 0.8rem;
                         margin-right: 5px;
                     }
+                }
+            }
+
+            .overview {
+                width: 50%;
+                margin-top: 2rem;
+
+                @include m-breakpoint-down(lmedium) {
+                    width: 80%;
+                }
+
+                @include m-breakpoint-down(small) {
+                    width: 100%;
+                }
+
+                h1 {
+                    font-size: $fs-22;
+                    margin-bottom: 0.5rem;
+                    color: $clr-gray;
+                }
+            }
+
+            .info {
+                > div {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 20px;
+
+                    h1 {
+                        margin: 0;
+                        margin-left: 5px;
+                        font-family: $font-primary;
+                        font-size: $fs-20;
+                    }
+                }
+            }
+
+            .trailer_btn {
+                margin-top: 15px;
+                border-color: rgba($clr-primary, 0.8);
+                color: rgba($clr-primary, 0.8);
+                transition: border-color color 200ms ease;
+
+                &:hover {
+                    border-color: rgba($clr-primary, 1);
+                    color: rgba($clr-primary, 1);
                 }
             }
         }

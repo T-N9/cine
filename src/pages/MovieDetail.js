@@ -27,7 +27,10 @@ const MovieDetail = () => {
     content_rating,
     genres = [],
     release_date,
-    runtime;
+    runtime,
+    overview,
+    rating,
+    popularity;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -44,6 +47,9 @@ const MovieDetail = () => {
         });
         release_date = getData.release_date;
         runtime = getData.runtime;
+        overview = getData.overview;
+        rating = getData.vote_average;
+        popularity = getData.popularity;
     }
 
     if (loading) return (
@@ -67,6 +73,9 @@ const MovieDetail = () => {
                 genres = {genres}
                 release_date = {release_date}
                 runtime = {runtime}
+                overview = {overview}
+                rating = {rating}
+                popularity = {popularity}
             />
         </>
     );

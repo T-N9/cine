@@ -8,7 +8,9 @@ const PopularNow = () => {
     const [tab, setTab] = useState('movies');
 
     const handleChange = (e, newTab) => {
-        setTab(newTab);
+        if(newTab !== null) {
+            setTab(newTab)
+        }
     };
 
     return (

@@ -27,7 +27,10 @@ const SeriesDetail = () => {
     content_rating,
     genres = [],
     first_air_date,
-    episode_run_time;
+    episode_run_time,
+    overview,
+    rating,
+    popularity;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -44,6 +47,9 @@ const SeriesDetail = () => {
         });
         first_air_date = getData.first_air_date;
         episode_run_time = getData.episode_run_time;
+        overview = getData.overview;
+        rating = getData.vote_average;
+        popularity = getData.popularity;
     }
 
     if (loading) return (
@@ -67,6 +73,9 @@ const SeriesDetail = () => {
                 genres = {genres}
                 first_air_date = {first_air_date}
                 episode_run_time = {episode_run_time}
+                overview = {overview}
+                rating = {rating}
+                popularity = {popularity}
             />
         </div>
     );
