@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 
 const DetailHero = (props) => {
 
-    let backdrop_path, poster_path, release_year, runtime;
+    let backdrop_path, poster_path, release_year, runtime , no_rate;
     if(props.backdrop_path !== undefined && props.poster_path !== undefined) {
         backdrop_path  = `https://www.themoviedb.org/t/p/original/${props.backdrop_path}`;
         poster_path = `https://www.themoviedb.org/t/p/original/${props.poster_path}`;
@@ -20,6 +20,8 @@ const DetailHero = (props) => {
             var rminutes = Math.round(minutes);
             return  rhours + "h" + rminutes + "m";
         }   
+
+        no_rate = "NR";
 
         runtime = props.runtime ? timeConvert(props.runtime) : `${props.episode_run_time}m`;
     }
@@ -35,8 +37,10 @@ const DetailHero = (props) => {
                         <img className={styles.detail_poster} src={`${poster_path}`} alt={`${props.title} poster`} />
                         <div className={styles.detail_movie_content}>
                             <div className={styles.detail_header}>
-                                <h1 className={styles.title}>{props.title}</h1>
-                                <h2>( {release_year} )</h2>
+                                <h1 className={styles.title}>{props.title}
+                                <span className={styles.year}>( {release_year} )</span>
+                                </h1>
+                                
                             </div>
                             <div className={styles.detail_neck}>
                                 <div className={styles.content_rating}>
@@ -45,9 +49,8 @@ const DetailHero = (props) => {
                                 <p className={styles.genres}>
                                     {
                                     props.genres.map(item => {
-                                        return (
-                                            props.genres.indexOf(item) < props.genres.length-1 ?
-                                            `${item} • ` : `${item}`
+                                        return (  
+                                            <span key={item} className={styles.genre}>{item}</span>
                                         )
                                     }
                                     )}
@@ -57,6 +60,14 @@ const DetailHero = (props) => {
                                     {runtime}
                                 </p>
                             </div>
+                            {
+                                props.tagline && 
+                                <div className={styles.tagline}>
+                                    <p>
+                                        " {props.tagline} "
+                                    </p>
+                                </div>
+                            }
                             <div className={styles.overview}>
                                 <h1>Overview</h1>
                                 <p>
@@ -69,7 +80,7 @@ const DetailHero = (props) => {
                                         <StarRateRounded/>
                                     </span>
                                     <h1>
-                                        {props.rating}
+                                        {props.rating === 0 ? no_rate : props.rating}
                                     </h1>
                                 </div>
 

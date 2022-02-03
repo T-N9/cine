@@ -24,13 +24,18 @@
 
             @include m-breakpoint-down(small) {
                 width: 6.5625rem;
-                height: calUni(35.98px);
+                height: auto;
             }
         }
 
         .logo_small {
             width: 5.5625rem !important;
             height: auto !important;
+
+            @include m-breakpoint-down(small) {
+                width: 6.5625rem !important;
+                height: auto !important;
+            }
         }
 
         .nav_items {

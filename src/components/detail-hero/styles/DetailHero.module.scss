@@ -66,12 +66,12 @@
                 @include m-breakpoint-down(large) {
                     // flex-direction: column;
                     flex-wrap: wrap;
-                    justify-content: flex-start;
                 }
 
-                h2 {
+                .year {
                     margin-left: 15px;
                     font-weight: normal;
+                    font-size: $fs-26;
 
                     @include m-breakpoint-down(large) {
                         // margin-left: 0;
@@ -95,13 +95,31 @@
             }
 
             .genres {
-                
+                display: flex;
+                flex-wrap: wrap;
+
+                .genre {
+                    padding: 2.5px 5px;
+                    border-radius: 20px;
+                    border: 1px solid $clr-gray;
+                    font-size: 14px;
+
+                    @include m-breakpoint-down(small) {
+                        margin-top: 5px;
+                    }
+
+                }
+
+                > :not(:last-child) {
+                    margin-right: 5px;
+                }
             }
 
             .detail_neck {
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+                margin-bottom: 2rem;
 
                 > p {
                     margin-bottom: 0;
@@ -118,9 +136,13 @@
                 }
             }
 
+            .tagline {
+                font-style: italic;
+                color: $clr-gray;
+            }
+
             .overview {
                 width: 50%;
-                margin-top: 2rem;
 
                 @include m-breakpoint-down(lmedium) {
                     width: 80%;
@@ -155,9 +177,11 @@
 
             .trailer_btn {
                 margin-top: 15px;
+                border-width: 2px;
                 border-color: rgba($clr-primary, 0.8);
                 color: rgba($clr-primary, 0.8);
                 transition: border-color color 200ms ease;
+                text-transform: capitalize;
 
                 &:hover {
                     border-color: rgba($clr-primary, 1);

@@ -30,7 +30,9 @@ const MovieDetail = () => {
     runtime,
     overview,
     rating,
-    popularity;
+    popularity,
+    status,
+    tagline;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -50,6 +52,8 @@ const MovieDetail = () => {
         overview = getData.overview;
         rating = getData.vote_average;
         popularity = getData.popularity;
+        status = getData.status;
+        tagline= getData.tagline;
     }
 
     if (loading) return (
@@ -76,6 +80,8 @@ const MovieDetail = () => {
                 overview = {overview}
                 rating = {rating}
                 popularity = {popularity}
+                status = {status}
+                tagline = {tagline}
             />
         </>
     );
