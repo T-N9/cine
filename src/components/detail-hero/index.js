@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles/DetailHero.module.scss';
 import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
 import { Button } from '@mui/material';
+import DetailTrailer from '../detail-trailer';
 
 
 const DetailHero = (props) => {
-
+    const [ showTrailer, setShowTrailer ] = useState(false);
     let backdrop_path, poster_path, release_year, runtime , no_rate;
     if(props.backdrop_path !== undefined && props.poster_path !== undefined) {
         backdrop_path  = `https://www.themoviedb.org/t/p/original/${props.backdrop_path}`;
@@ -26,6 +27,10 @@ const DetailHero = (props) => {
         runtime = props.runtime ? timeConvert(props.runtime) : `${props.episode_run_time}m`;
     }
 
+    const handleTrailer = () => {
+        setShowTrailer(prev => !prev);
+    }
+
     return (
         <section 
             className={styles.detail_hero}
@@ -43,9 +48,13 @@ const DetailHero = (props) => {
                                 
                             </div>
                             <div className={styles.detail_neck}>
-                                <div className={styles.content_rating}>
-                                    <p>{props.content_rating}</p>
-                                </div>
+                                {
+                                    props.content_rating && 
+                                    <div className={styles.content_rating}>
+                                        <p>{props.content_rating}</p>
+                                    </div>
+                                }
+                                
                                 <p className={styles.genres}>
                                     {
                                     props.genres.map(item => {
@@ -93,13 +102,18 @@ const DetailHero = (props) => {
                                     </h1>
                                 </div>
                             </div>
-                            <Button variant='outlined' className={styles.trailer_btn}>
+                            <Button onClick={handleTrailer} variant='outlined' className={styles.trailer_btn}>
                                 View Trailer
                             </Button>
                         </div>
                     </div>
                 </div>
             </div>
+            <DetailTrailer 
+                trailer = {props.trailer}
+                showTrailer = {showTrailer}
+                handleTrailer = {handleTrailer}
+            />
         </section>
     );
 }

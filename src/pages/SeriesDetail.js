@@ -32,7 +32,8 @@ const SeriesDetail = () => {
     rating,
     popularity,
     status,
-    tagline;
+    tagline,
+    trailer;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -54,6 +55,7 @@ const SeriesDetail = () => {
         popularity = getData.popularity;
         status = getData.status;
         tagline= getData.tagline;
+        trailer = getData.videos.results[0].key;
     }
 
     if (loading) return (
@@ -82,6 +84,7 @@ const SeriesDetail = () => {
                 popularity = {popularity}
                 status = {status}
                 tagline = {tagline}
+                trailer = {trailer}
             />
         </div>
     );
