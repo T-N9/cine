@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { makeLogoSmall } from '../redux/navActiveSlice';
-import { DetailHero } from '../components';
+import { DetailHero, DetailCasts } from '../components';
 
 const SeriesDetail = () => {
     const dispatch = useDispatch();
@@ -33,7 +33,8 @@ const SeriesDetail = () => {
     popularity,
     status,
     tagline,
-    trailer;
+    trailer,
+    media_type;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -56,6 +57,7 @@ const SeriesDetail = () => {
         status = getData.status;
         tagline= getData.tagline;
         trailer = getData.videos.results[0].key;
+        media_type = 'tv';
     }
 
     if (loading) return (
@@ -85,6 +87,10 @@ const SeriesDetail = () => {
                 status = {status}
                 tagline = {tagline}
                 trailer = {trailer}
+            />
+            <DetailCasts
+                id = {id}
+                media_type = {media_type}
             />
         </div>
     );

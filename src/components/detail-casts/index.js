@@ -43,7 +43,7 @@ const DetailCasts = (props) => {
         castsList = castsToShow.slice(0 , 10).map(item => {
             return (
                 <SwiperSlide
-                key = {item.cast_id}
+                key = {item.name}
                 >
                     <CastsCard
                         name = {item.name}
@@ -73,7 +73,7 @@ const DetailCasts = (props) => {
                 <h1 className={styles.title_2}>Casts</h1>
                 <Swiper
                     slidesPerView={3}
-                    spaceBetween={20}
+                    spaceBetween={30}
                     freeMode={true}
                     modules={[FreeMode]}
                     className="mySwiper"
