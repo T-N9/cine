@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import { DetailHero } from '../components';
+import { DetailHero, DetailCasts } from '../components';
 import { makeLogoSmall } from '../redux/navActiveSlice';
 import { useDispatch } from 'react-redux';
 
@@ -33,7 +33,8 @@ const MovieDetail = () => {
     popularity,
     status,
     tagline,
-    trailer;
+    trailer,
+    media_type;
 
     if(getData != null) {
         title = getData.name ? getData.name : getData.original_title;
@@ -56,6 +57,7 @@ const MovieDetail = () => {
         status = getData.status;
         tagline= getData.tagline;
         trailer = getData.videos.results[0].key;
+        media_type = "movie";
     }
 
     if (loading) return (
@@ -72,6 +74,7 @@ const MovieDetail = () => {
     return (
         <>
             <DetailHero
+                
                 title = {title}
                 backdrop_path = {backdrop_path}
                 poster_path = {poster_path}
@@ -85,6 +88,11 @@ const MovieDetail = () => {
                 status = {status}
                 tagline = {tagline}
                 trailer = {trailer}
+                
+            />
+            <DetailCasts
+                id = {id}
+                media_type = {media_type}
             />
         </>
     );

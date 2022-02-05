@@ -1,0 +1,56 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.card_wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    min-height: calUni(300px);
+    background-color: $clr-wah;
+    width: calUni(150px);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba( $clr-light, 0.2) 0px 2px 8px 0px;
+
+    @include m-breakpoint-down(small) {
+        width: calUni(110px);
+        min-height: calUni(250px);
+    }
+
+    .placeholder {
+        color :  $clr-primary;
+        background-color: $clr-gray;
+        width: 100%;
+        min-height: calUni(190px);
+        @include flex-center;
+
+        @include m-breakpoint-down(small) {
+            min-height: calUni(140px);
+        }
+    }
+
+    .cast_img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .content {
+        padding: 10px;
+
+        > * {
+            margin-bottom: 5px;
+        }
+    }
+    .name {
+        font-weight: 700;
+        font-size: $fs-20;
+
+        @include m-breakpoint-down(small) {
+            font-size: $fs-16;
+        }
+    }
+
+    .character {
+        font-size: 14px;
+    }
+}

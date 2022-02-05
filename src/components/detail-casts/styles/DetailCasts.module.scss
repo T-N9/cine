@@ -1,0 +1,12 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+
+.detail_casts {
+    margin-top: calUni(-120px);
+}
+h1 {
+    color: $clr-wah;
+    position: relative;
+}
