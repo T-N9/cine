@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailCasts.module.scss';
 import { CircularProgress } from '@mui/material';
+import { ArrowCircleRight } from '@mui/icons-material';
 import useFetch from '../../hooks/useFetch';
 import CastsCard from './CastsCard';
 
@@ -70,7 +71,7 @@ const DetailCasts = (props) => {
     return (
         <section className={styles.detail_casts}>
             <div className={`${styles.container_x_md}`}>
-                <h1 className={styles.title_2}>Casts</h1>
+                <h1 className={styles.title_2}>Top casts</h1>
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={30}
@@ -93,6 +94,15 @@ const DetailCasts = (props) => {
                     }}
                 > 
                 { castsList } 
+
+                <SwiperSlide
+                >
+                    <div className={styles.view_credits}>
+                        <p>View all credits</p>
+
+                        <ArrowCircleRight/>
+                    </div>
+                </SwiperSlide>
                 </Swiper>
                 
             </div>

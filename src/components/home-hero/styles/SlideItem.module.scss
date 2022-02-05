@@ -40,6 +40,11 @@
         .slide_content {
             max-width: calUni(1440px);
 
+            .top_list {
+                font-family: $font-writing;
+                font-size: $fs-22;
+            }
+
             @include m-breakpoint-up(slarge){
                 margin: auto;
                 min-width: calUni(1440px)

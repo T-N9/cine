@@ -5,6 +5,19 @@
 
 .detail_casts {
     margin-top: calUni(-120px);
+
+    .view_credits {
+        @include flex-center;
+        color: $clr-wah;
+        min-height: calUni(300px);
+        flex-direction: column;
+        text-align: center;
+
+        @include m-breakpoint-down(small) {
+            width: calUni(110px);
+            min-height: calUni(250px);
+        }
+    }
 }
 h1 {
     color: $clr-wah;
