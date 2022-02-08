@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './styles/PopularNow.module.scss';
-// import PopularSlider from './PopularSlider';
 import SliderCom1 from '../slider-com-1';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 

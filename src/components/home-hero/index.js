@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/HomeHero.module.scss';
-import useFetch from '../../hooks/useFetch';
+import { useSelector, useDispatch } from 'react-redux';
 import SlideItem from './SlideItem';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -21,44 +21,45 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const HomeHero = () => {
     const [getData, setGetData] = useState(null);
-    const { loading, data, error } = useFetch('https://api.themoviedb.org/3/trending/all/day?api_key=68d49bbc8d40fff0d6cafaa7bfd48072');
-
+    
+    const { list , status } = useSelector((state) => state.trending_all)
+    const dispatch = useDispatch();
     useEffect(() => {
-        if (data != null) {
-            setGetData(data.results)
-        }
-        // console.log(getData);
-    }, [data]);
+        setGetData(list);
+    }, [dispatch]);
 
-    if (loading) return (
+    if (status === 'loading') return (
         <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
             <CircularProgress/>
         </section>
     );
-    if (error) return (
+    if (status === 'failed') return (
         <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
     );
 
+    
+    
     let slideItems;
-    if (getData != null) {
+    if (getData !== null) {
 
-        slideItems = getData.slice(0, 5).map(item => {
-            return (
-                <SwiperSlide key={item.id}>
-                    <SlideItem
-                        id = {item.id}
-                        index = {getData.indexOf(item)}
-                        backdrop_path={item.backdrop_path}
-                        title={item.title}
-                        overview={item.overview}
-                        name={item.name}
-                        media_type = {item.media_type}
-                    />
-                </SwiperSlide>
-            )
-        })
+    // console.log(list.results, getData);
+    slideItems = list.results.slice(0,5).map(item => {
+        return (
+            <SwiperSlide key={item.id}>
+                <SlideItem
+                    id = {item.id}
+                    index = {list.results.indexOf(item)}
+                    backdrop_path={item.backdrop_path}
+                    title={item.title}
+                    overview={item.overview}
+                    name={item.name}
+                    media_type = {item.media_type}
+                />
+            </SwiperSlide>
+        )
+    })
     }
 
     return (

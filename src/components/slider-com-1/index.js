@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import styles from './styles/SliderCom1.module.scss';
 import useFetch from '../../hooks/useFetch';
 import SlideCardItem from './SlideCardItem';
-import styles from './styles/SliderCom1.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";

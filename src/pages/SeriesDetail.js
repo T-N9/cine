@@ -1,24 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import useFetch from '../hooks/useFetch';
+// import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeLogoSmall } from '../redux/navActiveSlice';
 import { DetailHero, DetailCasts } from '../components';
+import { getDetailSeries } from '../redux/detailSerieSlice';
 
 const SeriesDetail = () => {
-    const dispatch = useDispatch();
+    
     let { id } = useParams();
     const [getData, setGetData] = useState(null);
-    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`);
-
+    // const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`);
+    const { list , status } = useSelector((state) => state.detail_series)
+    const dispatch = useDispatch();
     useEffect(() => {
-        if (data != null) {
-            setGetData(data)
-        }
+        dispatch(getDetailSeries( {id : id}))
+        setGetData(list);
         dispatch(makeLogoSmall());
         // console.log(getData);
-    }, [data, dispatch]);
+    }, [ dispatch]);
 
     let title, 
     backdrop_path, 
@@ -31,41 +32,41 @@ const SeriesDetail = () => {
     overview,
     rating,
     popularity,
-    status,
+    s_status,
     tagline,
     trailer,
     media_type;
 
-    if(getData != null) {
-        title = getData.name ? getData.name : getData.original_title;
-        backdrop_path = getData.backdrop_path;
-        poster_path = getData.poster_path;
-        content_rating_US = getData.content_ratings.results.filter(item => {
+    if(getData !== null) {
+        title = list.name ? list.name : list.original_title;
+        backdrop_path = list.backdrop_path;
+        poster_path = list.poster_path;
+        content_rating_US = list.content_ratings.results.filter(item => {
             return(item.iso_3166_1 === "US")
         });
         content_rating=content_rating_US[0].rating;
-        getData.genres.map(item => {
+        list.genres.map(item => {
             return (
                 genres.push(item.name)
             )
         });
-        first_air_date = getData.first_air_date;
-        episode_run_time = getData.episode_run_time;
-        overview = getData.overview;
-        rating = getData.vote_average;
-        popularity = getData.popularity;
-        status = getData.status;
-        tagline= getData.tagline;
-        trailer = getData.videos.results[0].key;
+        first_air_date = list.first_air_date;
+        episode_run_time = list.episode_run_time;
+        overview = list.overview;
+        rating = list.vote_average;
+        popularity = list.popularity;
+        s_status = list.status;
+        tagline= list.tagline;
+        trailer = list.videos.results[0].key;
         media_type = 'tv';
     }
 
-    if (loading) return (
+    if (status === 'loading') return (
         <section>
             <CircularProgress/>
         </section>
     );
-    if (error) return (
+    if (status === 'failed') return (
         <section>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
@@ -84,7 +85,7 @@ const SeriesDetail = () => {
                 overview = {overview}
                 rating = {rating}
                 popularity = {popularity}
-                status = {status}
+                status = {s_status}
                 tagline = {tagline}
                 trailer = {trailer}
             />
