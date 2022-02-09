@@ -40,10 +40,16 @@ const SeriesDetail = () => {
         title = getData.name ? getData.name : getData.original_title;
         backdrop_path = getData.backdrop_path;
         poster_path = getData.poster_path;
-        content_rating_US = getData.content_ratings.results.filter(item => {
-            return(item.iso_3166_1 === "US")
-        });
-        content_rating=content_rating_US[0].rating;
+        // console.log(getData.content_ratings.results.length);
+        if(getData.content_ratings.results.length === 0) {
+            content_rating_US = getData.content_ratings.results.filter(item => {
+                return(item.iso_3166_1 === "US")
+            });
+            content_rating=content_rating_US[0].rating;
+        }else {
+            content_rating= false;
+        }
+        
         getData.genres.map(item => {
             return (
                 genres.push(item.name)
