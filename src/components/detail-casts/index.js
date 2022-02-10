@@ -59,12 +59,12 @@ const DetailCasts = (props) => {
     }
 
     if (loading) return (
-        <section>
+        <section className={styles.loading_error}>
             <CircularProgress/>
         </section>
     );
     if (error) return (
-        <section>
+        <section className={styles.loading_error}>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
     );

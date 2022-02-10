@@ -3,6 +3,8 @@ import styles from './styles/HomeHero.module.scss';
 import useFetch from '../../hooks/useFetch';
 import SlideItem from './SlideItem';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTrendingAll } from '../../redux/trendingAllSlice';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,12 +25,19 @@ const HomeHero = () => {
     const [getData, setGetData] = useState(null);
     const { loading, data, error } = useFetch('https://api.themoviedb.org/3/trending/all/day?api_key=68d49bbc8d40fff0d6cafaa7bfd48072');
 
+    const dispatch = useDispatch();
+    const { trendingAllData } = useSelector((state) => state.trending_all);
+
     useEffect(() => {
         if (data != null) {
-            setGetData(data.results)
+            setGetData(data.results); 
         }
-        // console.log(getData);
-    }, [data]);
+
+        if(trendingAllData === null) {
+            dispatch(setTrendingAll(data));
+        }
+        
+    }, [dispatch, data, trendingAllData]);
 
     if (loading) return (
         <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
@@ -44,12 +53,12 @@ const HomeHero = () => {
     let slideItems;
     if (getData != null) {
 
-        slideItems = getData.slice(0, 5).map(item => {
+        slideItems = trendingAllData.results.slice(0, 5).map(item => {
             return (
                 <SwiperSlide key={item.id}>
                     <SlideItem
                         id = {item.id}
-                        index = {getData.indexOf(item)}
+                        index = {trendingAllData.results.indexOf(item)}
                         backdrop_path={item.backdrop_path}
                         title={item.title}
                         overview={item.overview}

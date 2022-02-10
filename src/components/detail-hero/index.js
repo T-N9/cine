@@ -22,7 +22,7 @@ const DetailHero = (props) => {
 
     useEffect(() => {
         if (data != null) {
-            setGetData(data)
+            setGetData(data);
         }
     }, [ data]);
 
