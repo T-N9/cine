@@ -45,6 +45,20 @@
                 font-size: $fs-22;
             }
 
+            .top_num {
+                display: inline-flex;
+                width: 30px;
+                height: 30px;
+                background-color: rgba($clr-dark, 0.5);
+                color: $clr-light;
+                border-radius: 50px;
+                font-family: $font-heading;
+                font-weight: 800;
+
+                justify-content: center;
+                align-items: center;
+            }
+
             @include m-breakpoint-up(slarge){
                 margin: auto;
                 min-width: calUni(1440px)

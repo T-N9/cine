@@ -191,3 +191,8 @@
         }
     }
 }
+
+.info_loading_error {
+    min-height: 600px;
+    @include flex-center;
+}

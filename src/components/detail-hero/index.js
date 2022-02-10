@@ -53,15 +53,30 @@ const DetailHero = (props) => {
             content_rating_US = getData.releases.countries.filter(item => {
                 return(item.iso_3166_1 === "US")
             });
-            content_rating=content_rating_US[content_rating_US.length - 1].certification;
-            getData.genres.map(item => {
-                return (
-                    genres.push(item.name)
-                )
+
+            let i = 1;
+            do {
+                content_rating=content_rating_US[content_rating_US.length - i].certification;
+                i++;
+            }while(content_rating === '');
+            
+        }else {
+            content_rating_US = getData.content_ratings.results.filter(item => {
+                return(item.iso_3166_1 === "US")
             });
+            let i = 1;
+            do {
+                content_rating= content_rating_US[content_rating_US.length-i].rating;
+                i++;
+            }while(content_rating === '');
         }
+        // console.log(content_rating_US,content_rating_US.length, content_rating);
 
-
+        getData.genres.map(item => {
+            return (
+                genres.push(item.name)
+            )
+        });
         release_date = getData.release_date;
         runtime = getData.runtime;
         overview = getData.overview;
@@ -83,12 +98,12 @@ const DetailHero = (props) => {
     }
 
     if (loading) return (
-        <section>
+        <section className={styles.info_loading_error}>
             <CircularProgress/>
         </section>
     );
     if (error) return (
-        <section>
+        <section className={styles.info_loading_error}>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
     );
