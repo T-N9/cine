@@ -1,17 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
+import useFetch from '../../hooks/useFetch';
+import { CircularProgress } from '@mui/material';
 import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import DetailTrailer from '../detail-trailer';
 
-
 const DetailHero = (props) => {
+
+    const [getData, setGetData] = useState(null);
     const [ showTrailer, setShowTrailer ] = useState(false);
-    let backdrop_path, poster_path, release_year, runtime , no_rate;
-    if(props.backdrop_path !== undefined && props.poster_path !== undefined) {
-        backdrop_path  = `https://www.themoviedb.org/t/p/original/${props.backdrop_path}`;
-        poster_path = `https://www.themoviedb.org/t/p/original/${props.poster_path}`;
-        release_year = props.release_date ? props.release_date.substring(0,4) : props.first_air_date.substring(0,4);
+
+    let urlLink ;
+    if(props.media_type === 'movie') {
+        urlLink = `https://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`
+    } else {
+        urlLink = `https://api.themoviedb.org/3/tv/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`
+    }
+
+    const { loading, data, error } = useFetch(urlLink);
+
+    useEffect(() => {
+        if (data != null) {
+            setGetData(data)
+        }
+    }, [ data]);
+
+    let title, 
+    backdrop_path, 
+    poster_path , 
+    content_rating_US,
+    content_rating,
+    genres = [],
+    release_date,
+    runtime,
+    overview,
+    rating,
+    popularity,
+    status,
+    tagline,
+    trailer,
+    media_type,
+    first_air_date,
+    episode_run_time;
+    
+    if(getData != null) {
+        title = getData.name ? getData.name : getData.original_title;
+        backdrop_path = getData.backdrop_path;
+        poster_path = getData.poster_path;
+
+        if(props.media_type === 'movie') {
+            content_rating_US = getData.releases.countries.filter(item => {
+                return(item.iso_3166_1 === "US")
+            });
+            content_rating=content_rating_US[content_rating_US.length - 1].certification;
+            getData.genres.map(item => {
+                return (
+                    genres.push(item.name)
+                )
+            });
+        }
+
+
+        release_date = getData.release_date;
+        runtime = getData.runtime;
+        overview = getData.overview;
+        rating = getData.vote_average;
+        popularity = getData.popularity;
+        status = getData.status;
+        tagline= getData.tagline;
+
+        if(getData.videos.results.length > 0){
+            trailer = getData.videos.results[0].key;
+        }else {
+            trailer = null;
+        }
+        
+        first_air_date = getData.first_air_date;
+        episode_run_time= getData.episode_run_time;
+        media_type = "movie";
+
+    }
+
+    if (loading) return (
+        <section>
+            <CircularProgress/>
+        </section>
+    );
+    if (error) return (
+        <section>
+            <h1>⚠️ Error getting resources! ⚠️</h1>
+        </section>
+    );
+
+    
+    let  release_year, no_rate;
+    if(backdrop_path !== undefined && poster_path !== undefined) {
+        backdrop_path  = `https://www.themoviedb.org/t/p/original/${backdrop_path}`;
+        poster_path = `https://www.themoviedb.org/t/p/original/${poster_path}`;
+        release_year = release_date ? release_date.substring(0,4) : first_air_date.substring(0,4);
 
         function timeConvert(n) {
             var num = n;
@@ -24,7 +111,7 @@ const DetailHero = (props) => {
 
         no_rate = "NR";
 
-        runtime = props.runtime ? timeConvert(props.runtime) : `${props.episode_run_time}m`;
+        runtime = runtime ? timeConvert(runtime) : `${episode_run_time}m`;
     }
 
     const handleTrailer = () => {
@@ -39,25 +126,25 @@ const DetailHero = (props) => {
             <div className={styles.detail_wrapper}>
                 <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
                     <div className={styles.flex_section}>
-                        <img className={styles.detail_poster} src={`${poster_path}`} alt={`${props.title} poster`} />
+                        <img className={styles.detail_poster} src={`${poster_path}`} alt={`${title} poster`} />
                         <div className={styles.detail_movie_content}>
                             <div className={styles.detail_header}>
-                                <h1 className={styles.title}>{props.title}
+                                <h1 className={styles.title}>{title}
                                 <span className={styles.year}>( {release_year} )</span>
                                 </h1>
                                 
                             </div>
                             <div className={styles.detail_neck}>
                                 {
-                                    props.content_rating && 
+                                    content_rating && 
                                     <div className={styles.content_rating}>
-                                        <p>{props.content_rating}</p>
+                                        <p>{content_rating}</p>
                                     </div>
                                 }
                                 
                                 <p className={styles.genres}>
                                     {
-                                    props.genres.map(item => {
+                                    genres.map(item => {
                                         return (  
                                             <span key={item} className={styles.genre}>{item}</span>
                                         )
@@ -70,17 +157,17 @@ const DetailHero = (props) => {
                                 </p>
                             </div>
                             {
-                                props.tagline && 
+                                tagline && 
                                 <div className={styles.tagline}>
                                     <p>
-                                        " {props.tagline} "
+                                        " {tagline} "
                                     </p>
                                 </div>
                             }
                             <div className={styles.overview}>
                                 <h1>Overview</h1>
                                 <p>
-                                    {props.overview}
+                                    {overview}
                                 </p>
                             </div>
                             <div className={styles.info}>
@@ -89,7 +176,7 @@ const DetailHero = (props) => {
                                         <StarRateRounded/>
                                     </span>
                                     <h1>
-                                        {props.rating === 0 ? no_rate : props.rating}
+                                        {rating === 0 ? no_rate : rating}
                                     </h1>
                                 </div>
 
@@ -98,7 +185,7 @@ const DetailHero = (props) => {
                                         <People/>
                                     </span>
                                     <h1>
-                                        {props.popularity}
+                                        {popularity}
                                     </h1>
                                 </div>
                             </div>
@@ -110,7 +197,7 @@ const DetailHero = (props) => {
                 </div>
             </div>
             <DetailTrailer 
-                trailer = {props.trailer}
+                trailer = {trailer}
                 showTrailer = {showTrailer}
                 handleTrailer = {handleTrailer}
             />

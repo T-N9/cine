@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles/SlideCardItem.module.scss';
+import { useDispatch } from 'react-redux';
+import { setItemId, setItemType } from '../../redux/detailMovieTVSlice';
 
 const SlideCardItem = (props) => {
 
@@ -17,9 +19,15 @@ const SlideCardItem = (props) => {
 
     let media_type = props.media_type;
     let route_type = media_type === 'tv' ? 'series' : 'movies';
+
+    const dispatch = useDispatch();
+    const getItemInfo = () => {
+        dispatch(setItemId(props.id));
+        dispatch(setItemType(media_type));
+    }
     return (
         <div className={styles.slide_card_item}>
-            <Link to={`/${route_type}/${props.id}`}>
+            <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>
                 <div className={styles.wrapper}>
                     <img 
                     src={`https://www.themoviedb.org/t/p/original/${props.image}`} 

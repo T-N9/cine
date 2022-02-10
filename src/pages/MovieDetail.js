@@ -1,97 +1,35 @@
-import React, {useState, useEffect} from 'react';
-import useFetch from '../hooks/useFetch';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
 import { DetailHero, DetailCasts } from '../components';
 import { makeLogoSmall } from '../redux/navActiveSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
 
 const MovieDetail = () => {
+
+    let { item_id, item_type } = useSelector((state) => state.detail_movie_tv);
     const dispatch = useDispatch();
     let { id } = useParams();
-    const [getData, setGetData] = useState(null);
-    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/movie/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`);
-
-    useEffect(() => {
-        if (data != null) {
-            setGetData(data)
-        }
-        dispatch(makeLogoSmall());
-        // console.log(getData);
-    }, [data, dispatch]);
-
-    let title, 
-    backdrop_path, 
-    poster_path , 
-    content_rating_US,
-    content_rating,
-    genres = [],
-    release_date,
-    runtime,
-    overview,
-    rating,
-    popularity,
-    status,
-    tagline,
-    trailer,
-    media_type;
-
-    if(getData != null) {
-        title = getData.name ? getData.name : getData.original_title;
-        backdrop_path = getData.backdrop_path;
-        poster_path = getData.poster_path;
-        content_rating_US = getData.releases.countries.filter(item => {
-            return(item.iso_3166_1 === "US")
-        });
-        content_rating=content_rating_US[content_rating_US.length - 1].certification;
-        getData.genres.map(item => {
-            return (
-                genres.push(item.name)
-            )
-        });
-        release_date = getData.release_date;
-        runtime = getData.runtime;
-        overview = getData.overview;
-        rating = getData.vote_average;
-        popularity = getData.popularity;
-        status = getData.status;
-        tagline= getData.tagline;
-        trailer = getData.videos.results[0].key;
-        media_type = "movie";
+    if(item_id === null) {
+        item_id = id;
+        dispatch(setItemId(id));
+        dispatch(setItemType('movie'));
     }
 
-    if (loading) return (
-        <section>
-            <CircularProgress/>
-        </section>
-    );
-    if (error) return (
-        <section>
-            <h1>⚠️ Error getting resources! ⚠️</h1>
-        </section>
-    );
+    useEffect(() => {
+        dispatch(makeLogoSmall());
+    }, [ dispatch]);
+
+    let media_type = 'movie';
 
     return (
         <>
             <DetailHero
-                
-                title = {title}
-                backdrop_path = {backdrop_path}
-                poster_path = {poster_path}
-                content_rating = {content_rating}
-                genres = {genres}
-                release_date = {release_date}
-                runtime = {runtime}
-                overview = {overview}
-                rating = {rating}
-                popularity = {popularity}
-                status = {status}
-                tagline = {tagline}
-                trailer = {trailer}
-                
+                id = {item_id}
+                media_type = {item_type}
             />
             <DetailCasts
-                id = {id}
+                id = {item_id}
                 media_type = {media_type}
             />
         </>

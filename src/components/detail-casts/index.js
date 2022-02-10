@@ -17,10 +17,11 @@ import "swiper/css/navigation";
 import { FreeMode } from "swiper";
 
 const DetailCasts = (props) => {
-    const [ getData, setGetData ] = useState(null);
+    const [ getcasts, setgetcasts ] = useState(null);
 
     let urlLink;
     if (props.media_type !== undefined) {
+        
         urlLink = `https://api.themoviedb.org/3/${props.media_type}/${props.id}/credits?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`
     }
 
@@ -28,17 +29,17 @@ const DetailCasts = (props) => {
 
     useEffect(() => {
         if (data !== null) {
-            setGetData(data)
+            setgetcasts(data)
         }
     }, [data]);
 
     let castsList;
-    if(getData != null) {
+    if(getcasts != null) {
         let castsToShow;
-        if(getData.cast.length > 10) {
-            castsToShow = getData.cast.slice(0 , 10);   
+        if(getcasts.cast.length > 10) {
+            castsToShow = getcasts.cast.slice(0 , 10);   
         }else {
-            castsToShow = getData.cast;
+            castsToShow = getcasts.cast;
         }
 
         castsList = castsToShow.slice(0 , 10).map(item => {

@@ -10,7 +10,14 @@ const DetailTrailer = (props) => {
                 className={styles.cancel}>
                     <Cancel/>
                 </button>
-                <iframe className={styles.detail_video} src={props.showTrailer ? `https://www.youtube.com/embed/${props.trailer}` : ``} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                {
+                    props.trailer !== null ?
+                    <iframe className={styles.detail_video} src={props.showTrailer ? `https://www.youtube.com/embed/${props.trailer}` : ``} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> :
+                    <div className={styles.not_av}>
+                        <h1>Trailer Not Found!</h1>
+                    </div>
+                }
+                
             </div>
         </div>
     );
