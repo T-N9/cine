@@ -124,6 +124,9 @@ const DetailHero = (props) => {
             style={{backgroundImage : `url(${backdrop_path})`}}
         >
             <div className={styles.detail_wrapper}>
+                <div className={styles.d_none}>
+                    { status && media_type}
+                </div>
                 <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
                     <div className={styles.flex_section}>
                         <img className={styles.detail_poster} src={`${poster_path}`} alt={`${title} poster`} />
