@@ -49,6 +49,15 @@ const DetailHero = (props) => {
         backdrop_path = getData.backdrop_path;
         poster_path = getData.poster_path;
 
+        const findOtherRatings_tv = () => {
+            let getRating = getData.content_ratings.results;
+            let i = 1;
+                do {
+                    content_rating= getRating[getRating.length-i].rating;
+                    i++;
+                }while(content_rating === '');
+        }
+
         if(props.media_type === 'movie') {
             content_rating_US = getData.releases.countries.filter(item => {
                 return(item.iso_3166_1 === "US")
@@ -59,18 +68,32 @@ const DetailHero = (props) => {
                 content_rating=content_rating_US[content_rating_US.length - i].certification;
                 i++;
             }while(content_rating === '');
+
+
             
         }else {
-            content_rating_US = getData.content_ratings.results.filter(item => {
-                return(item.iso_3166_1 === "US")
-            });
-            let i = 1;
-            do {
-                content_rating= content_rating_US[content_rating_US.length-i].rating;
-                i++;
-            }while(content_rating === '');
+            if(getData.content_ratings.results.length > 0) {
+                content_rating_US = getData.content_ratings.results.filter(item => {
+                    return(item.iso_3166_1 === 'US')
+                });
+
+                // console.log(content_rating_US.length);
+
+                if(content_rating_US.length === 0) {
+                    findOtherRatings_tv();
+                }else {
+                    let i = 1;
+                    do {
+                        content_rating= content_rating_US[content_rating_US.length-i].rating;
+                        i++;
+                    }while(content_rating === '');
+                }
+                
+            }else {
+                content_rating = '';
+            }
+            // findOtherRatings_tv();
         }
-        // console.log(content_rating_US,content_rating_US.length, content_rating);
 
         getData.genres.map(item => {
             return (
@@ -127,6 +150,7 @@ const DetailHero = (props) => {
         no_rate = "NR";
 
         runtime = runtime ? timeConvert(runtime) : `${episode_run_time}m`;
+        // console.log(status);
     }
 
     const handleTrailer = () => {
@@ -169,10 +193,19 @@ const DetailHero = (props) => {
                                     }
                                     )}
                                 </p>
-                                <p className={styles.runtime}>
-                                    <AccessTimeSharp/>
-                                    {runtime}
-                                </p>
+                                {
+                                    runtime !== 'm' &&
+                                    <p className={styles.runtime}>
+                                        <AccessTimeSharp/>
+                                        {runtime}
+                                    </p>
+                                }
+                                {
+                                    status === "In Production" &&
+                                    <p className={styles.coming_soon}>
+                                        Coming Soon
+                                    </p>
+                                }
                             </div>
                             {
                                 tagline && 

@@ -7,6 +7,9 @@
     margin-top: calUni(-120px);
 
     .view_credits {
+        background-color: $clr-black;
+        border-radius: 5px;
+        border:  1px solid $clr-light;
         @include flex-center;
         color: $clr-wah;
         min-height: calUni(300px);
