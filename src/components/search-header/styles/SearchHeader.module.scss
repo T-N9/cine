@@ -1,0 +1,11 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.search_header {
+    margin-top: calUni(67.98px);
+    background: linear-gradient(90deg, #1F4287 0%, #278EA5 100%);
+    h1 {
+        margin: 0;
+    }
+}

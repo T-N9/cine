@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeLogoSmall } from '../redux/navActiveSlice';
+import { makeLogoSmall, activeNavItem } from '../redux/navActiveSlice';
 import { DetailHero, DetailCasts } from '../components';
 import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
 
@@ -18,6 +18,7 @@ const SeriesDetail = () => {
 
     useEffect(() => {
         dispatch(makeLogoSmall());
+        dispatch(activeNavItem("series"))
     }, [dispatch]);
 
     let media_type = 'tv';

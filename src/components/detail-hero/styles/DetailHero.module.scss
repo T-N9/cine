@@ -8,6 +8,7 @@
     background-position: top right;
     background-size: 90%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     @include m-breakpoint-up(lmedium) {
         margin-top: calUni(67.98px);
