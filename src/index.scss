@@ -155,6 +155,9 @@ button {
 
 .MuiInputLabel-root {
   color: $clr-light !important;
+  font-family: $font-heading !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
 }
 
 .MuiInputLabel-root.Mui-focused {
@@ -167,6 +170,10 @@ button {
 
 .MuiInputBase-input {
   color: $clr-wah !important;
+}
+
+.MuiToggleButton-root.Mui-selected {
+  background-color: $clr-primary !important;
 }
 
 .swiper {

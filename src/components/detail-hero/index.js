@@ -108,8 +108,6 @@ const DetailHero = (props) => {
                     return (item.iso_3166_1 === 'US')
                 });
 
-                // console.log(content_rating_US.length);
-
                 if (content_rating_US.length === 0) {
                     findOtherRatings_tv();
                 } else {
@@ -123,7 +121,6 @@ const DetailHero = (props) => {
             } else {
                 content_rating = '';
             }
-            // findOtherRatings_tv();
         }
 
         getData.genres.map(item => {
@@ -184,7 +181,6 @@ const DetailHero = (props) => {
         no_rate = "NR";
 
         runtime = runtime ? timeConvert(runtime) : `${episode_run_time}m`;
-        // console.log(status);
     }
 
     const handleTrailer = () => {

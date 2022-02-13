@@ -17,6 +17,7 @@
     @include m-breakpoint-down(large) {
         background-position: center center;
         background-size: cover;
+        background-attachment: scroll;
     }
 
     .container_y_2 {
@@ -41,10 +42,14 @@
                 align-items: center;
             }
             .detail_poster {
-            width: calUni(300px);
-            border-radius: 10px;
+                min-width: calUni(300px);
+                min-height: calc(450px);
+                width: calUni(300px);
+                border-radius: 10px;
 
             @include m-breakpoint-down(small) {
+                min-width: calUni(200px);
+                min-height: calc(300px);
                 width: calUni(200px);
             }
             }

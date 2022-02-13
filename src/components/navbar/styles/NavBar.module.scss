@@ -11,7 +11,7 @@
     background-color: transparent;
 
     @include m-breakpoint-down(large) {
-        position: fixed;
+        position: absolute;
     }
     .flex_box {
         display: flex;
