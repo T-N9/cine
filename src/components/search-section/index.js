@@ -13,7 +13,6 @@ const SearchForAll = () => {
 
     const enterHandler = (e) => {
         e.preventDefault();
-        console.log('Enter Pressed');
         navigate(`/search/${formValue}`);
     }
 

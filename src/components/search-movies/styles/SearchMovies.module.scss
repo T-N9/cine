@@ -1,0 +1,22 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.paginate_page {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 1px solid $clr-primary;
+    border-radius: 50px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+
+    p {
+        margin-bottom: 0 !important;
+    }
+}
