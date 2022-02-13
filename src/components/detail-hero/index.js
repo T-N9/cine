@@ -61,10 +61,15 @@ const DetailHero = (props) => {
         const findOtherRatings_movie = () => {
             let getRating = getData.releases.countries;
             let i = 1;
-            do {
-                content_rating = getRating[getRating.length - i].rating;
-                i++;
-            } while (content_rating === '');
+            if(getData.releases.countries === []) {
+                do {
+                    content_rating = getRating[getRating.length - i].certification;
+                    i++;
+                } while (content_rating === '');
+            } else {
+                content_rating = '';
+            }
+            
 
         }
 
@@ -99,7 +104,7 @@ const DetailHero = (props) => {
                     }
                 }
             }
-            getData.releases.countries === [] ?
+            getData.releases.countries !== [] ?
                 checkMovieRating() :
                 content_rating = '';
         } else {
@@ -224,7 +229,7 @@ const DetailHero = (props) => {
                                         )}
                                 </p>
                                 {
-                                    runtime !== 'm' &&
+                                    runtime !== 'm' || runtime !== 'undefinedm' &&
                                     <p className={styles.runtime}>
                                         <AccessTimeSharp />
                                         {runtime}
