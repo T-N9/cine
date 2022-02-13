@@ -149,46 +149,24 @@ button {
   background: $clr-light !important;
 }
 
-.css-d9c359-MuiButtonBase-root-MuiToggleButton-root.Mui-selected {
-  background-color: $clr-primary !important;
-}
-
-.css-1cmnqml.Mui-selected {
-  background-color: $clr-primary !important;
-}
-
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-  color: $clr-light !important;
-  // font-family: $font-primary !important;
-}
-
-.css-p0rm37 {
-  color: $clr-light !important;
-}
-
-.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+.MuiCircularProgress-root {
   color: $clr-primary !important;
 }
 
-.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+.MuiInputLabel-root {
   color: $clr-light !important;
-  // font-family: $font-primary !important;
 }
 
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  border-color : $clr-primary !important;
+.MuiInputLabel-root.Mui-focused {
+  color: $clr-light !important;
 }
 
-.css-igs3ac {
-  border-color : $clr-primary !important;
+.MuiOutlinedInput-notchedOutline {
+  border-color: $clr-primary !important;
 }
 
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+.MuiInputBase-input {
   color: $clr-wah !important;
-}
-
-.css-18lrjg1-MuiCircularProgress-root {
-  color: $clr-primary !important;
 }
 
 .swiper {
