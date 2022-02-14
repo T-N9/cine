@@ -229,12 +229,11 @@ const DetailHero = (props) => {
                                         )}
                                 </p>
                                 {
-                                    runtime !== 'm' || runtime !== 'undefinedm' &&
+                                    (runtime !== 'm' || runtime !== 'undefinedm') &&
                                     <p className={styles.runtime}>
                                         <AccessTimeSharp />
                                         {runtime}
-                                    </p>
-                                }
+                                    </p>                                }
                                 {
                                     status === "In Production" &&
                                     <p className={styles.coming_soon}>
