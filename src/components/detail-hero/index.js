@@ -229,7 +229,7 @@ const DetailHero = (props) => {
                                         )}
                                 </p>
                                 {
-                                    (runtime !== 'm' || runtime !== 'undefinedm') &&
+                                    (runtime !== 'undefinedm') &&
                                     <p className={styles.runtime}>
                                         <AccessTimeSharp />
                                         {runtime}

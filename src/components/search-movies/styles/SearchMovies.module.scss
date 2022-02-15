@@ -2,6 +2,10 @@
 @import '../../../styles/variables';
 @import '../../../styles/utilities';
 
+.movie_result_page {
+    padding-bottom: 50px;
+}
+
 .paginate_page {
     display: inline-flex;
     width: 20px;
@@ -18,5 +22,67 @@
 
     p {
         margin-bottom: 0 !important;
+    }
+}
+
+.active_page {
+    background-color: $clr-primary;
+}
+
+.paginate_wrapper {
+    position: fixed;
+    bottom: calUni(20px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    width: 50%;
+    margin: auto;
+
+    @include flex-center;
+
+    @include m-breakpoint-down(small) {
+        width: 100%;
+    }
+
+    .paginate {
+        margin-right: 10px;
+        color: $clr-wah;
+    }
+
+    button {
+        background-color: $clr-primary;
+        color: $clr-wah;
+        padding: 5px 0;
+        border-radius: 10px;
+
+        box-shadow: rgba($clr-light, 0.2) 0px 2px 8px 0px;
+        transition: all 100ms ease;
+        &:hover {
+            background-color: $clr-light;
+            color: $clr-primary;
+        }
+
+        &:disabled {
+            background-color: transparent;
+
+        }
+    }
+}
+
+.result_grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    @include m-breakpoint-down(large) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include m-breakpoint-down(small) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card_wrapper {
+        @include flex-center;
+        align-items: flex-start;
     }
 }

@@ -154,10 +154,10 @@ button {
 }
 
 .MuiInputLabel-root {
-  color: $clr-light !important;
+  color: rgba($clr-light, 0.8) !important;
   font-family: $font-heading !important;
   font-weight: 800 !important;
-  letter-spacing: 1.5px !important;
+  letter-spacing: 1.1px !important;
 }
 
 .MuiInputLabel-root.Mui-focused {

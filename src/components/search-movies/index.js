@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles/SearchMovies.module.scss';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material';
 import useFetch from '../../hooks/useFetch';
 import { useDispatch } from 'react-redux';
 import { setItemId, setItemType } from '../../redux/detailMovieTVSlice';
+import SearchResultCard from '../search-results-cards';
 
 const SearchMovies = (props) => {
 
@@ -29,33 +31,84 @@ const SearchMovies = (props) => {
         setPage(page)
     }
 
-    let movies, page_arr = [], pagination;
+    const goToBackPage = () => {
+        setPage( prev => prev-1)
+    }
+
+    const goToNextPage = () => {
+        setPage( prev => prev+1)
+    }
+
+    let movieResults, page_arr = [], paginationNow, endOfPagination , startOfPagination,  paginationStart, paginationEnd;
     if(getData != null) {
-        // console.log(getData.results);
-        movies = getData.results.map(movie => {
+        movieResults = getData.results.map(movie => {
             return (
-                <Link onClick={() => getItemInfo(movie.id)} key={movie.id} to={`/movies/${movie.id}`}>
-                    <h1 >
-                        {movie.title}
-                    </h1>
-                </Link>
+                <div className={styles.card_wrapper} key={movie.id}>
+                    <Link  onClick={() => getItemInfo(movie.id)}  to={`/movies/${movie.id}`}>
+                        <SearchResultCard
+                            title = {movie.title}
+                            image = {movie.poster_path}
+                            name = {movie.name}
+                        />
+                    </Link>
+                </div>
             )
         });
 
 
         for(let i = 1; i <= getData.total_pages; i++) {
             page_arr.push(i);
-            
         }
-        pagination = page_arr.map((item) => {
+
+        let paginateShow;
+        if(page_arr.length > 7) {
+            paginationEnd = [page_arr.length-1, page_arr.length];
+            paginationStart = [1, 2];
+            if(page === 1 || page === 2){
+                paginateShow = page_arr.slice(0,5)   
+            }else if(page >= page_arr.length-3){
+                paginateShow = [page_arr.length-4,page_arr.length-3,page_arr.length-2,page_arr.length-1, page_arr.length];
+            }else{
+                paginateShow = [page-2, page-1, page, page+1, page+2]; 
+            }
+        }else{
+            paginateShow = page_arr;
+        }
+
+
+        paginationNow = paginateShow.map((item) => {
             return (
-                <div onClick={() => pageClick(item)} key={item} className={styles.paginate_page}>
+                <div onClick={() => pageClick(item)} key={item} className={item === page ? `${styles.paginate_page}  ${styles.active_page}`: `${styles.paginate_page}`}>
                     <p>{item}</p>
                 </div>
             )
         })
-        
 
+        if(page_arr.length > 7 && page < page_arr.length-3) {
+            endOfPagination = paginationEnd.map((item) => {
+                return (
+                    <div onClick={() => pageClick(item)} key={item} className={item === page ? `${styles.paginate_page}  ${styles.active_page}`: `${styles.paginate_page}`}>
+                        <p>{item}</p>
+                    </div>
+                )
+            });
+        }else if(page >= page_arr.length-3){
+            endOfPagination = '';
+        }else {
+            endOfPagination = '';
+        }
+
+        if(page > 7) {
+            startOfPagination = paginationStart.map((item) => {
+                return (
+                    <div onClick={() => pageClick(item)} key={item} className={item === page ? `${styles.paginate_page}  ${styles.active_page}`: `${styles.paginate_page}`}>
+                        <p>{item}</p>
+                    </div>
+                )
+            });
+        } else {
+            startOfPagination = '';
+        }
     }
 
     if (loading) return (
@@ -70,10 +123,27 @@ const SearchMovies = (props) => {
     );
 
     return (
-        <section>
-            { pagination }
-            <div>
-                {movies}
+        <section className={styles.movie_result_page}>
+            <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
+                <div className={styles.paginate_wrapper}>
+                    <button onClick={goToBackPage} disabled={page === 1}>
+                        <ArrowBackIosRounded/>
+                    </button>
+                    <div className={styles.paginate}>
+                        { startOfPagination }
+                        { startOfPagination !== '' && <span> ... </span> }
+                        { paginationNow }
+                        { endOfPagination !== '' && <span> ... </span> }
+                        { endOfPagination }
+                    </div>
+                    <button onClick={goToNextPage} disabled={page === page_arr.length}>
+                        <ArrowForwardIosRounded/>
+                    </button>
+                </div>
+                
+                <div className={styles.result_grid}>
+                    {movieResults}
+                </div>
             </div>
         </section>
     );

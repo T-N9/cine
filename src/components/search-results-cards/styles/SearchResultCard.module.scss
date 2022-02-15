@@ -1,0 +1,24 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.search_result_card {
+    width: calUni(150px);
+
+    .image_wrapper {
+        margin-bottom: 10px;
+        .image {
+            min-width: calUni(150px);
+            min-height: calUni(223px);
+            object-fit: cover;
+            border-radius: 5px;
+            border: 2px solid $clr-gray;
+        }
+    }
+
+    .content {
+        .title {
+            font-size: 14px;
+        }
+    }
+}
