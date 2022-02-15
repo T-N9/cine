@@ -125,6 +125,11 @@ const SearchMovies = (props) => {
     return (
         <section className={styles.movie_result_page}>
             <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
+                
+                <div className={styles.result_grid}>
+                    {movieResults}
+                </div>
+
                 <div className={styles.paginate_wrapper}>
                     <button onClick={goToBackPage} disabled={page === 1}>
                         <ArrowBackIosRounded/>
@@ -139,10 +144,6 @@ const SearchMovies = (props) => {
                     <button onClick={goToNextPage} disabled={page === page_arr.length}>
                         <ArrowForwardIosRounded/>
                     </button>
-                </div>
-                
-                <div className={styles.result_grid}>
-                    {movieResults}
                 </div>
             </div>
         </section>

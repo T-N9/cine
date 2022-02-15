@@ -10,6 +10,7 @@
         .image {
             min-width: calUni(150px);
             min-height: calUni(223px);
+            max-height: calUni(225px);
             object-fit: cover;
             border-radius: 5px;
             border: 2px solid $clr-gray;

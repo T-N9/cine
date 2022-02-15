@@ -2,9 +2,6 @@
 @import '../../../styles/variables';
 @import '../../../styles/utilities';
 
-.movie_result_page {
-    padding-bottom: 50px;
-}
 
 .paginate_page {
     display: inline-flex;
@@ -30,13 +27,10 @@
 }
 
 .paginate_wrapper {
-    position: fixed;
-    bottom: calUni(20px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2000;
+    
     width: 50%;
     margin: auto;
+    margin-top: calUni(50px) ;
 
     @include flex-center;
 
@@ -72,6 +66,7 @@
 .result_grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 2rem;
 
     @include m-breakpoint-down(large) {
         grid-template-columns: repeat(4, 1fr);
