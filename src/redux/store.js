@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import navActiveReducer from './navActiveSlice';
 import trendingAllReducer from './trendingAllSlice';
-import detailMovieTVSlice from './detailMovieTVSlice';
+import detailMovieTVReducer from './detailMovieTVSlice';
+import searchResultsReducer from './searchResultsSlice';
+import searchActiveReducer from "./searchActiveSlice";
 
 export const store = configureStore({
     reducer: {
         navActivate: navActiveReducer,
         trending_all : trendingAllReducer,
-        detail_movie_tv : detailMovieTVSlice
+        detail_movie_tv : detailMovieTVReducer,
+        searchResults : searchResultsReducer,
+        searchActive : searchActiveReducer
     },
 })

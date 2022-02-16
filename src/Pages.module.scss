@@ -1,0 +1,15 @@
+@import './styles/mixins';
+@import './styles/variables';
+
+.search_result_route_wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+
+    @include m-breakpoint-down(large) {
+        flex-direction: column-reverse;
+    }
+
+    .search_wrapper {
+        flex: 7;
+    }
+}

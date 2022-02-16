@@ -6,3 +6,5 @@ export { default as DetailCasts } from './detail-casts';
 export { default as SearchForAll} from './search-section';
 export { default as SearchHeader } from './search-header';
 export { default as SearchMovies } from './search-movies';
+export { default as SearchSeries } from './search-series';
+export { default as SearchAside } from './search-aside';
