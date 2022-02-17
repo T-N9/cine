@@ -9,4 +9,22 @@
     h1 {
         margin: 0;
     }
+
+    .autocomplete {
+        position: absolute;
+        cursor: pointer;
+        background-color: $clr-dark;
+        .auto_item {
+            color: $clr-wah;
+            padding: 5px 10px;
+            background-color: $clr-primary;
+            border-radius: 2px;
+            margin-bottom: 2px;
+            transition: all 200ms ease;
+
+            &:hover {
+                background-color: rgba($clr-black, 0.3);
+            }
+        }
+    }
 }

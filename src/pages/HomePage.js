@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { HomeHero, PopularNow, SearchForAll } from '../components';
-import { makeLogoBig } from '../redux/navActiveSlice';
-import { activeNavItem } from '../redux/navActiveSlice';
+import { makeLogoBig, activeNavItem } from '../redux/navActiveSlice';
+import { setSearchActive } from '../redux/searchActiveSlice'
 import { useDispatch } from 'react-redux';
 
 const Homepage = () => {
@@ -9,6 +9,7 @@ const Homepage = () => {
     useEffect(() => {
         dispatch(makeLogoBig());
         dispatch(activeNavItem('home'));
+        dispatch(setSearchActive("movies"));
     }, [dispatch]);
 
     return (
