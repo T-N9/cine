@@ -11,26 +11,22 @@ const SearchHeader = (props) => {
     const [formValue, setFormValue] = useState(props.query);
     const [autoComData, setAutoComData] = useState(null);
 
-    const { data } = useFetch(`https://api.themoviedb.org/3/search/multi?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=${formValue}`);
+    let url;
+    if(formValue.length === 0){
+        url = `https://api.themoviedb.org/3/search/multi?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=demo`;
+    }else{
+        url = `https://api.themoviedb.org/3/search/multi?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=${formValue}`;
+    }
+
+    const { data } = useFetch(url);
 
     useEffect(() => {
         let autoCom = [];
 
-        // if(data != null) {
-        //     if(formValue !== ''){
-        //         data.results.map(item => {
-        //             item.title ? autoCom.push(item.title) : autoCom.push(item.name)
-        //         });
-
-        //         setAutoComData(autoCom);
-        //     }
-
-        // }
-
         (async () => {
             await data;
 
-            if (formValue.length > 0) {
+            if (formValue.length > 0 && data !== null) {
                 data.results.map(item => {
                     return item.title ? autoCom.push(item.title) : autoCom.push(item.name)
                 });
@@ -57,15 +53,16 @@ const SearchHeader = (props) => {
 
     const changeHandler = (e) => {
         let value = e.target.value;
-
         setFormValue(value);
-
         setDisplay(true);
     }
 
     const handleAutoCom = (value) => {
         setFormValue(value);
         setAutoComData(false);
+
+        navigate(`/search/${value}`);
+        setDisplay(false);
     }
 
     return (
@@ -79,7 +76,7 @@ const SearchHeader = (props) => {
                                 id="fullWidth"
                                 autoComplete='off'
                                 value={formValue}
-                                helperText={`Results for "${props.query}"`}
+                                // helperText={`Results for "${props.query}"`}
                                 variant='filled'
                                 size='small'
                                 onChange={changeHandler}

@@ -1,0 +1,214 @@
+.d_none {
+  display: none !important;
+}
+
+.d_block {
+  display: block;
+}
+
+.flex_auto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.text_center {
+  text-align: center;
+}
+
+@media (min-width: 85.375em) {
+  .hide_on_desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 85.3125em) {
+  .hide_on_mobile {
+    display: none !important;
+  }
+}
+
+.container_x_sm {
+  padding-left: calc($e / 16px)rem;
+  padding-right: calc($e / 16px)rem;
+  max-width: calc($e / 16px)rem;
+  margin: auto;
+}
+
+@media (max-width: 35.9375em) {
+  .container_x_sm {
+    padding-left: calc($e / 16px)rem;
+    padding-right: calc($e / 16px)rem;
+  }
+}
+
+.container_y_1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.container_y_2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.container_y_3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.container_x_md {
+  padding-left: calc($e / 16px)rem;
+  padding-right: calc($e / 16px)rem;
+  max-width: calc($e / 16px)rem;
+  margin: auto;
+}
+
+@media (max-width: 35.9375em) {
+  .container_x_md {
+    padding-left: calc($e / 16px)rem;
+    padding-right: calc($e / 16px)rem;
+  }
+}
+
+.title_1 {
+  font-size: calc($e / 16px)rem;
+  font-weight: 800;
+}
+
+@media (max-width: 35.9375em) {
+  .title_1 {
+    font-size: calc($e / 16px)rem;
+  }
+}
+
+.title_2 {
+  font-size: calc($e / 16px)rem;
+  font-weight: 800;
+}
+
+@media (max-width: 35.9375em) {
+  .title_2 {
+    font-size: calc($e / 16px)rem;
+  }
+}
+
+.small_italic_text {
+  font-style: italic;
+}
+
+.toggle_button {
+  color: #ffffff !important;
+  text-transform: capitalize !important;
+  padding: 2.5px 10px !important;
+  border-color: #1F4287 !important;
+}
+
+.error_loading_section {
+  color: #FF304F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.error_loading_slides {
+  min-height: calc($e / 16px)rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.slide_is_showed {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.slide_is_hidden {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+}
+
+.detail_casts {
+  margin-top: calc($e / 16px)rem;
+}
+
+.detail_casts .view_credits {
+  background-color: #1c2a30;
+  border-radius: 5px;
+  border: 1px solid #21E6C1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  min-height: calc($e / 16px)rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+@media (max-width: 35.9375em) {
+  .detail_casts .view_credits {
+    width: calc($e / 16px)rem;
+    min-height: calc($e / 16px)rem;
+  }
+}
+
+h1 {
+  color: #ffffff;
+  position: relative;
+}
+
+.loading_error {
+  height: 100%;
+  min-height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=DetailCasts.module.css.map */
