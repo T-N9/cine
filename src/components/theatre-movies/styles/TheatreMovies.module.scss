@@ -1,0 +1,11 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.slide_wrapper {
+    width: 60%;
+    margin: 3rem auto;
+    @include m-breakpoint-down(large) {
+        width: 100%;
+    }
+}

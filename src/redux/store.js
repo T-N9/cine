@@ -4,6 +4,7 @@ import trendingAllReducer from './trendingAllSlice';
 import detailMovieTVReducer from './detailMovieTVSlice';
 import searchResultsReducer from './searchResultsSlice';
 import searchActiveReducer from "./searchActiveSlice";
+import theatreMoviesReducer from './theatreMoviesSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         trending_all : trendingAllReducer,
         detail_movie_tv : detailMovieTVReducer,
         searchResults : searchResultsReducer,
-        searchActive : searchActiveReducer
+        searchActive : searchActiveReducer,
+        theatreMovies : theatreMoviesReducer
     },
 })

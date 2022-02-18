@@ -160,14 +160,63 @@
           transform: translateY(20px);
 }
 
-.slide_wrapper {
-  width: 60%;
-  margin: 3rem auto;
+.slide_item {
+  position: relative;
+  min-height: calc($e / 16px)rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
 }
 
-@media (max-width: 85.3125em) {
-  .slide_wrapper {
-    width: 100%;
+@media (max-width: 35.9375em) {
+  .slide_item {
+    min-height: calc($e / 16px)rem;
   }
 }
-/*# sourceMappingURL=TheatreMovies.module.css.map */
+
+.slide_item .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(7, 30, 61, 0.5);
+  -webkit-backdrop-filter: grayscale(1);
+          backdrop-filter: grayscale(1);
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.slide_item .overlay:hover {
+  background-color: transparent;
+  -webkit-backdrop-filter: grayscale(0);
+          backdrop-filter: grayscale(0);
+}
+
+.slide_item .title {
+  text-shadow: 1px 1px 3px #21E6C1;
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  padding: 30px;
+}
+
+.slide_item .overview {
+  padding: 0 5rem;
+  width: 70%;
+  color: #ffffff;
+  height: 50px;
+}
+/*# sourceMappingURL=SlideItem.module.css.map */
