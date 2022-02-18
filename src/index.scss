@@ -144,6 +144,10 @@ button {
   width: 40px !important;
   height: 3px !important;
   border-radius: 2px !important;
+
+  @include m-breakpoint-down(small) {
+    width: 20px !important;
+  }
 }
 
 .swiper-pagination-bullet-active {

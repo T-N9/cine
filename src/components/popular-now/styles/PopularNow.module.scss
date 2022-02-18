@@ -4,6 +4,15 @@
 
 .popular_now {
     color: $clr-wah;
+    background-image: url(../../../images/background-trend.png);
+    background-repeat: no-repeat;
+    background-position: center 10px;
+    background-size: 100%;
+
+    @include m-breakpoint-down(small) {
+        background-position: center center;
+        background-image: url(../../../images/background-trend-sm.png);
+    }
 
     .popular_wrapper {
         position: relative;

@@ -20,11 +20,11 @@ const SlideItem = (props) => {
         >
             <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>
                 <div className={styles.overlay}>
-                    <h1 className={`${styles.title} ${styles.title_1}`}>
+                    <h1 className={`${styles.title} ${styles.title_3}`}>
                         {props.title}
                     </h1>
                     {/* <p className={styles.overview}>
-                        {props.overview.slice(0,200)}
+                        {props.overview}
                     </p> */}
                 </div>
             </Link>

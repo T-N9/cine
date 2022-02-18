@@ -95,6 +95,15 @@ text-align: center;
     }
 }
 
+.title_3 {
+    font-size: $fs-38;
+    font-weight: 800;
+
+    @include m-breakpoint-down(small) {
+        font-size: $fs-22;
+    }
+}
+
 .small_italic_text {
     font-style: italic;
 }

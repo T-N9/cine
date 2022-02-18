@@ -72,7 +72,7 @@ const TheatreMovies = () => {
             <div className={styles.container_y_1}>
                 <div className={styles.container_x_md}>
                     <h1 className={styles.title_2}>
-                        In theatres
+                        In Theatres
                     </h1>
                 </div>
                 <div className={styles.slide_wrapper}>
