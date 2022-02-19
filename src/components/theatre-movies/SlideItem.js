@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setItemId, setItemType } from '../../redux/detailMovieTVSlice';
 import useFetch from '../../hooks/useFetch';
-import { PlayCircleOutlineRounded } from '@mui/icons-material';
+import { StarRateRounded, PlayCircleOutlineRounded } from '@mui/icons-material';
+import { Imdb } from '@icons-pack/react-simple-icons';
 
 const SlideItem = (props) => {
 
@@ -26,39 +27,66 @@ const SlideItem = (props) => {
     }, [data]);
 
     let tagline,
-        poster_path;
+        poster_path,
+        rating,
+        imdbRating;
 
     if (getData !== null) {
         tagline = data.tagline;
         poster_path = data.poster_path;
+        rating = data.vote_average;
+        imdbRating = data.imdb_id;
     }
 
     return (
         <>
             <div className={styles.slide_item}>
-                <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>
-                    <div className={styles.slide_cover}
-                        style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${props.backdrop_path})` }}
-                    >
-                        <div className={styles.overlay}>
-                            <PlayCircleOutlineRounded fontSize='large'/>
-                        </div>
-                        <div className={styles.bottom_overlay}>
 
-                        </div>
+                <div className={styles.slide_cover}
+                    style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${props.backdrop_path})` }}
+                >
+                    <div className={styles.overlay}>
+                        <PlayCircleOutlineRounded fontSize='large' />
+                        <p>Watch Trailer</p>
                     </div>
-                    <div className={styles.slide_content}>
-                        <img className={styles.poster} src={`https://www.themoviedb.org/t/p/original/${poster_path}`} alt={props.title} />
-                        <div className={styles.label}>
-                            <h1 className={`${styles.title} ${styles.title_3}`}>
-                                {props.title}
-                            </h1>
+                    <div className={styles.bottom_overlay}>
+
+                    </div>
+                </div>
+                <div className={styles.slide_content}>
+                    {
+                    poster_path !== 'undefined' && 
+                    <img className={styles.poster} src={`https://www.themoviedb.org/t/p/original/${poster_path}`} alt={props.title} />
+                    }
+                    <div className={styles.label}>
+                        <div>
+                            <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>
+                                <h1 className={`${styles.title} ${styles.title_3}`}>
+                                    {props.title}
+                                </h1>
+                            </Link>
                             <p className={styles.tagline}>
-                                “ {tagline} ”
+                                {tagline}
                             </p>
+
+                            <div className={styles.info}>
+                                <div className={styles.rating}>
+                                    <span className={styles.icon}>
+                                        <StarRateRounded />
+                                    </span>
+                                    <h1>
+                                        {rating}
+                                    </h1>
+                                </div>
+                                <a href={`https://www.imdb.com/title/${imdbRating}`} target="_blank" rel='noreferrer'>
+                                    <div className={styles.imdb}>
+                                        <Imdb color='#F5C518' />
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </Link>
+                </div>
             </div>
         </>
     );
