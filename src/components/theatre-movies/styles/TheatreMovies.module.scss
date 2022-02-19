@@ -5,6 +5,10 @@
 .slide_wrapper {
     width: 60%;
     margin: 3rem auto;
+
+    @include m-breakpoint-up(slarge) {
+        width: 50%;
+    }
     @include m-breakpoint-down(large) {
         width: 100%;
         margin: 2rem auto;
