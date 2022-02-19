@@ -17,7 +17,7 @@ const SlideItem = (props) => {
         dispatch(setItemType('movie'));
     }
 
-    const { data } = useFetch(`http://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos`)
+    const { data } = useFetch(`https://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos`)
 
     useEffect(() => {
         if (data !== null) {
