@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HomeHero, PopularNow, SearchForAll, TheatreMovies } from '../components';
+import { HomeHero, PopularNow, SearchForAll, TheatreMovies, UpcomingMovies } from '../components';
 import { makeLogoBig, activeNavItem } from '../redux/navActiveSlice';
 import { setSearchActive } from '../redux/searchActiveSlice'
 import { useDispatch } from 'react-redux';
@@ -18,6 +18,7 @@ const Homepage = () => {
             <SearchForAll/>
             <PopularNow/>
             <TheatreMovies/>
+            <UpcomingMovies/>
         </>
     );
 }

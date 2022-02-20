@@ -10,8 +10,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
     Autoplay, Pagination, Navigation
 } from 'swiper';
-
-// install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const TheatreMovies = () => {
@@ -75,10 +73,6 @@ const TheatreMovies = () => {
                         pagination={{
                             "clickable": true
                         }}
-                        // autoplay={{
-                        //     "delay": 10000,
-                        //     "disableOnInteraction": true
-                        // }}
                         speed={400}
                         breakpoints={{
                             1366 : {

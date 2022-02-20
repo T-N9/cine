@@ -107,11 +107,13 @@
         position: relative;
         // z-index: 2000;
         width: calUni(160px);
+        max-height: calUni(240px);
         border-radius: 5px;
         box-shadow: rgba($clr-light, 0.24) 0px 3px 8px;
 
         @include m-breakpoint-down(small) {
             width: calUni(100px);
+            min-height: calUni(150px);
             z-index: 100;
         }
     }

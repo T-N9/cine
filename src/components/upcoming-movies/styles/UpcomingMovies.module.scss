@@ -1,0 +1,18 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.upcoming_movies {
+    background: linear-gradient(180deg, #1F4287 0%, #071E3D 100%);
+
+    .list_grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+
+        @include m-breakpoint-down(small) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+}

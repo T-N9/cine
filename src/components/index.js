@@ -10,3 +10,4 @@ export { default as SearchSeries } from './search-series';
 export { default as SearchAside } from './search-aside';
 export { default as TheatreMovies } from './theatre-movies';
 export { default as TheatreTrailer } from './theatre-trailer';
+export { default as UpcomingMovies } from './upcoming-movies';
