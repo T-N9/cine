@@ -15,4 +15,12 @@
         }
     }
 
+    .view_more_btn {
+        border-color: $clr-primary !important;
+        color: $clr-primary !important;
+        text-transform: capitalize;
+        display: table;
+        margin: auto;
+    }
+
 }

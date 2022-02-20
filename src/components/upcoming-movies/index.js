@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles/UpcomingMovies.module.scss';
 import useFetch from '../../hooks/useFetch';
 import UpcomingItem from './UpcomingItem';
+import { Button } from '@mui/material';
 
 const UpcomingMovies = () => {
 
     const [ getData, setGetData ] = useState(null);
+    const [ maxNum , setMaxNum ] = useState(6);
 
     const { data } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`);
 
@@ -15,10 +17,14 @@ const UpcomingMovies = () => {
         }
     }, [ data ]);
 
+    const handelMaxNum = () => {
+        setMaxNum( prev => prev+4);
+    }
+
     let movieList;
 
     if(getData !== null) {
-        movieList = getData.results.slice(0, 6).map( item => {
+        movieList = getData.results.slice(0, maxNum).map( item => {
             return(
                 
                 <UpcomingItem
@@ -44,6 +50,11 @@ const UpcomingMovies = () => {
                 <div className={`${styles.list_grid} ${styles.container_y_1}`}>
                     { movieList }
                 </div>
+                {
+                    !(maxNum >= 20) ?
+                    <Button onClick={handelMaxNum} className={styles.view_more_btn} variant='outlined' size='small'>View More</Button> :
+                    <Button className={styles.view_more_btn} variant='outlined' size='small'>View All</Button>
+                }
             </div>
         </section>
     );
