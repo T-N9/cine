@@ -6,14 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTheatreMovies } from '../../redux/theatreMoviesSlice';
 import SlideItem from './SlideItem';
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-// import "swiper/swiper-bundle.min.css";
-import "swiper/css/pagination"
-
-// import Swiper core and required modules
 import SwiperCore, {
     Autoplay, Pagination, Navigation
 } from 'swiper';
@@ -102,7 +95,3 @@ const TheatreMovies = () => {
 }
 
 export default TheatreMovies;
-
-
-
-// https://api.themoviedb.org/3/movie/now_playing?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US
