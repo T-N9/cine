@@ -82,10 +82,10 @@ const TheatreMovies = () => {
                         pagination={{
                             "clickable": true
                         }}
-                        autoplay={{
-                            "delay": 10000,
-                            "disableOnInteraction": false
-                        }}
+                        // autoplay={{
+                        //     "delay": 10000,
+                        //     "disableOnInteraction": true
+                        // }}
                         speed={400}
                         breakpoints={{
                             1366 : {
@@ -96,7 +96,6 @@ const TheatreMovies = () => {
                         {slideItems}
                     </Swiper>
                 </div>
-                    
             </div>
         </section>
     );

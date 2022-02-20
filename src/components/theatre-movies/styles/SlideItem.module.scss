@@ -57,6 +57,10 @@
         color: $clr-wah; 
         padding: 30px;    
 
+        .play_icon {
+            cursor: pointer;
+        }
+
         svg {
             transition: transform 200ms ease;
         }
@@ -100,12 +104,14 @@
     
     .poster {
         position: relative;
+        z-index: 2000;
         width: calUni(160px);
         border-radius: 5px;
         box-shadow: rgba($clr-light, 0.24) 0px 3px 8px;
 
         @include m-breakpoint-down(small) {
             width: calUni(100px);
+            z-index: 100;
         }
     }
 

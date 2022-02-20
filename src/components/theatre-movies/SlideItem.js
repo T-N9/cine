@@ -6,11 +6,13 @@ import { setItemId, setItemType } from '../../redux/detailMovieTVSlice';
 import useFetch from '../../hooks/useFetch';
 import { StarRateRounded, PlayCircleOutlineRounded } from '@mui/icons-material';
 import { Imdb } from '@icons-pack/react-simple-icons';
+import TheatreTrailer from '../theatre-trailer';
 
 const SlideItem = (props) => {
 
     let route_type = 'movies';
     const [getData, setGetData] = useState(null);
+    const [showTrailer, setShowTrailer] = useState(false);
 
     const dispatch = useDispatch();
     const getItemInfo = () => {
@@ -26,29 +28,48 @@ const SlideItem = (props) => {
         }
     }, [data]);
 
+    const handleTrailer = () => {
+        setShowTrailer(prev => !prev);
+    }
+
     let tagline,
         poster_path,
         rating,
-        imdbRating;
+        imdbRating,
+        trailer;
 
     if (getData !== null) {
         tagline = data.tagline;
         poster_path = data.poster_path;
         rating = data.vote_average;
         imdbRating = data.imdb_id;
+
+        if (data.videos.results.length > 0) {
+            trailer = data.videos.results[0].key;
+        } else {
+            trailer = null;
+        }
     }
 
     return (
         <>
             <div className={styles.slide_item}>
-
                 <div className={styles.slide_cover}
                     style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${props.backdrop_path})` }}
                 >
+                    <TheatreTrailer
+                        trailer={trailer}
+                        showTrailer={showTrailer}
+                        handleTrailer={handleTrailer}
+                    />
+                    
                     <div className={styles.overlay}>
-                        <PlayCircleOutlineRounded fontSize='large' />
+                        <div onClick={handleTrailer} className={styles.play_icon}>
+                            <PlayCircleOutlineRounded fontSize='large' />
+                        </div>
                         <p>Watch Trailer</p>
                     </div>
+                    
                     <div className={styles.bottom_overlay}>
 
                     </div>
@@ -88,6 +109,7 @@ const SlideItem = (props) => {
                     </div>
                 </div>
             </div>
+            
         </>
     );
 }
