@@ -30,12 +30,12 @@ const TheatreMovies = () => {
     }, [dispatch, data, theatreMoviesData])
 
     if (loading) return (
-        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+        <section className={`${styles.error_loading_section}`}>
             <CircularProgress />
         </section>
     );
     if (error) return (
-        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+        <section className={`${styles.error_loading_section}`}>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
     );

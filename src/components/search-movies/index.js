@@ -116,12 +116,12 @@ const SearchMovies = (props) => {
     }
 
     if (loading) return (
-        <section>
+        <section className={styles.error_loading_section}>
             <CircularProgress/>
         </section>
     );
     if (error) return (
-        <section>
+        <section className={styles.error_loading_section}>
             <h1>⚠️ Error getting resources! ⚠️</h1>
         </section>
     );

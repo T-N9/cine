@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/UpcomingAllMovies.module.scss';
 import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material';
+import { CircularProgress } from '@mui/material';
 import useFetch from '../../hooks/useFetch';
 import UpcomingItem from '../upcoming-movies/UpcomingItem';
 
@@ -9,7 +10,7 @@ const UpcomingAllMovies = () => {
 
     const [ getData, setGetData ] = useState(null);
     const [ page, setPage] = useState(1);
-    const { data } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US&page=${page}`);
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US&page=${page}`);
 
     useEffect(() => {
         if(data !== null) {
@@ -99,6 +100,17 @@ const UpcomingAllMovies = () => {
             startOfPagination = '';
         }
     }
+
+    if (loading) return (
+        <section className={`${styles.error_loading_section}`}>
+            <CircularProgress />
+        </section>
+    );
+    if (error) return (
+        <section className={`${styles.error_loading_section}`}>
+            <h1>⚠️ Error getting resources! ⚠️</h1>
+        </section>
+    );
 
     return (
         <section>

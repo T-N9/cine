@@ -14,3 +14,11 @@
         margin: 2rem auto;
     }   
 }
+
+.error_loading_section {
+    height: calUni(815px);
+
+    @include m-breakpoint-down(lmedium){
+        height: calUni(500px);
+    }
+}

@@ -3,14 +3,14 @@ import styles from './styles/UpcomingMovies.module.scss';
 import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import UpcomingItem from './UpcomingItem';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 const UpcomingMovies = () => {
 
     const [ getData, setGetData ] = useState(null);
     const [ maxNum , setMaxNum ] = useState(6);
 
-    const { data } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`);
+    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`);
 
     useEffect(() => {
         if(data !== null) {
@@ -40,6 +40,17 @@ const UpcomingMovies = () => {
             )
         });
     }
+
+    if (loading) return (
+        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+            <CircularProgress/>
+        </section>
+    );
+    if (error) return (
+        <section className={`${styles.error_loading_section} ${styles.error_loading_hero}`}>
+            <h1>⚠️ Error getting resources! ⚠️</h1>
+        </section>
+    );
 
     return (
         <section className={styles.upcoming_movies}>
