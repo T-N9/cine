@@ -141,8 +141,19 @@ const DetailHero = (props) => {
         status = getData.status;
         tagline = getData.tagline;
 
+        let trailer_official;
         if (getData.videos.results.length > 0) {
-            trailer = getData.videos.results[0].key;
+            trailer_official = data.videos.results.filter(item => {
+                return (item.type === 'Trailer' && item.official === true)
+            });
+
+            if(trailer_official.length === 0) {
+                trailer_official = data.videos.results.filter(item => {
+                    return (item.type === 'Trailer')
+                });
+            }
+
+            trailer = trailer_official[0].key;
         } else {
             trailer = null;
         }

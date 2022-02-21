@@ -36,7 +36,8 @@ const SlideItem = (props) => {
         poster_path,
         rating,
         imdbRating,
-        trailer;
+        trailer,
+        trailer_official;
 
     if (getData !== null) {
         tagline = data.tagline;
@@ -45,7 +46,11 @@ const SlideItem = (props) => {
         imdbRating = data.imdb_id;
 
         if (data.videos.results.length > 0) {
-            trailer = data.videos.results[0].key;
+            trailer_official = data.videos.results.filter(item => {
+                return (item.type === 'Trailer' && item.official === true)
+            });
+
+            trailer = trailer_official[0].key;
         } else {
             trailer = null;
         }
