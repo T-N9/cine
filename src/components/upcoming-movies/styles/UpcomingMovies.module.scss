@@ -5,6 +5,33 @@
 .upcoming_movies {
     background: linear-gradient(180deg, #1F4287 0%, #071E3D 100%);
 
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include m-breakpoint-down(small) {
+            flex-direction: column;
+
+            h1 {
+                text-align: center;
+            }
+
+            .view_all_btn {
+                margin-top: 1rem;
+            }
+        }
+
+        .view_all_btn {
+            color: $clr-wah;
+            font-weight: bold;
+
+            p {
+                border-bottom: 1px solid $clr-light;
+            }
+        }
+    }
+
     .list_grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);

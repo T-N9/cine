@@ -12,6 +12,7 @@
 
     .autocomplete {
         position: absolute;
+        z-index: 500;
         cursor: pointer;
         background-color: $clr-dark;
         .auto_item {

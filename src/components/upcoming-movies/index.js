@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/UpcomingMovies.module.scss';
+import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import UpcomingItem from './UpcomingItem';
 import { Button } from '@mui/material';
@@ -33,19 +34,29 @@ const UpcomingMovies = () => {
                     title = {item.title}
                     poster_path = {item.poster_path}
                     overview = {item.overview}
+                    release_date = {item.release_date}
                 />
                 
             )
-        })
-
+        });
     }
 
     return (
         <section className={styles.upcoming_movies}>
             <div className={`${styles.container_y_3} ${styles.container_x_md}` }>
-                <h1 className={styles.title_2}>
-                    Upcoming Movies
-                </h1>
+                <div className={styles.header}>
+                    <h1 className={styles.title_2}>
+                        Upcoming Movies
+                    </h1>
+
+                    <Link to="/upcoming">
+                        <div className={styles.view_all_btn}>
+                            <p>
+                                View All
+                            </p>
+                        </div>
+                    </Link>
+                </div>
 
                 <div className={`${styles.list_grid} ${styles.container_y_1}`}>
                     { movieList }
@@ -53,7 +64,9 @@ const UpcomingMovies = () => {
                 {
                     !(maxNum >= 20) ?
                     <Button onClick={handelMaxNum} className={styles.view_more_btn} variant='outlined' size='small'>View More</Button> :
-                    <Button className={styles.view_more_btn} variant='outlined' size='small'>View All</Button>
+                    <Link to="/upcoming">
+                        <Button className={styles.view_more_btn} variant='outlined' size='small'>View All</Button>
+                    </Link>
                 }
             </div>
         </section>

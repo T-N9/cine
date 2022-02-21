@@ -47,6 +47,16 @@
             }
         }
 
+        .released_date {
+            font-weight: bold;
+            font-family: $font-special;
+            color: $clr-primary;
+
+            @include m-breakpoint-down(small) {
+                margin-top: 5px;
+            }
+        }
+
         p {
             color: $clr-black;
             display: -webkit-box;
@@ -64,6 +74,10 @@
         .content {
             flex: 4;
             padding: calUni(20px) calUni(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
         }
     }
 }

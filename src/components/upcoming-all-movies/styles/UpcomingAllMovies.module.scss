@@ -1,0 +1,13 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.list_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+
+    @include m-breakpoint-down(small) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
