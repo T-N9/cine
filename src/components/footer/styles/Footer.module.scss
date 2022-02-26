@@ -1,0 +1,24 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.footer {
+    background: linear-gradient(90deg, $clr-dark 0%, $clr-secondary 100%);
+    color: $clr-wah;
+
+    .flex_content {
+        display: flex;
+
+        .logo_content {
+            .logo {
+                width: calUni(200px);
+            }
+
+            p {
+                font-family: $font-writing;
+                text-align: center;
+                font-size: $fs-22;
+            }
+        }
+    }
+}

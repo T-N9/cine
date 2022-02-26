@@ -6,66 +6,6 @@
     flex: 7;
 }
 
-.paginate_page {
-    display: inline-flex;
-    width: 20px;
-    height: 20px;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border: 1px solid $clr-primary;
-    border-radius: 50px;
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-
-    p {
-        margin-bottom: 0 !important;
-    }
-}
-
-.active_page {
-    background-color: $clr-primary;
-}
-
-.paginate_wrapper {
-    
-    width: 50%;
-    margin: auto;
-    margin-top: calUni(50px);
-
-    @include flex-center;
-
-    @include m-breakpoint-down(small) {
-        width: 100%;
-    }
-
-    .paginate {
-        margin-right: 10px;
-        color: $clr-wah;
-    }
-
-    button {
-        background-color: $clr-primary;
-        color: $clr-wah;
-        padding: 5px 0;
-        border-radius: 10px;
-
-        box-shadow: rgba($clr-light, 0.2) 0px 2px 8px 0px;
-        transition: all 100ms ease;
-        &:hover {
-            background-color: $clr-light;
-            color: $clr-primary;
-        }
-
-        &:disabled {
-            background-color: transparent;
-
-        }
-    }
-}
-
 .result_grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
