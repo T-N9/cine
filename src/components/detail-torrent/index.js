@@ -17,7 +17,7 @@ const DetailTorrent = (props) => {
                 setGetData(data);
 
                 let targetMovie;
-                if (data.data.movie_count >= 1) {
+                if (data.data.movies) {
 
                     targetMovie = data.data.movies.filter(movie => {
                         return movie.imdb_code === props.imdb_id;
