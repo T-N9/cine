@@ -7,7 +7,7 @@ import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
 
 const MovieDetail = () => {
 
-    let { item_id, item_type, imdb_id, movie_name } = useSelector((state) => state.detail_movie_tv);
+    let { item_id, item_type, imdb_id, movie_name, year_released } = useSelector((state) => state.detail_movie_tv);
     const dispatch = useDispatch();
     let { id } = useParams();
     if(item_id === null) {
@@ -38,6 +38,7 @@ const MovieDetail = () => {
             <DetailTorrent
                 imdb_id = {imdb_id}
                 movie_name = {movie_name}
+                year = {year_released}
             />
         </>
     );

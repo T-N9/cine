@@ -8,7 +8,7 @@ const DetailTorrent = (props) => {
 
     const dispatch = useDispatch();
     const [getData, setGetData] = useState(null);
-    const { data } = useFetch(`https://yts.mx/api/v2/list_movies.json?query_term=${props.movie_name}`);
+    const { data } = useFetch(`https://yts.mx/api/v2/list_movies.json?query_term=${props.movie_name}( ${props.year} )`);
     // console.log(props.movie_name);
 
     useEffect(() => {
@@ -23,10 +23,14 @@ const DetailTorrent = (props) => {
                         return movie.imdb_code === props.imdb_id;
                     })
 
+                    // console.log(targetMovie);
+
                     if (targetMovie[0] !== undefined) {
                         // console.log(targetMovie[0].torrents);
                         dispatch(setTorrents(targetMovie[0].torrents))
                     }
+
+                    targetMovie.length === 0 && dispatch(setTorrents([]));
                 }
             }
         }
@@ -36,7 +40,7 @@ const DetailTorrent = (props) => {
 
     if (getData !== null) {
 
-
+        // console.log(data);
     }
 
     return (

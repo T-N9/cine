@@ -3,7 +3,7 @@ import styles from './styles/DetailHero.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
-import { setImdbId, setMovieName } from '../../redux/detailMovieTVSlice';
+import { setImdbId, setMovieName, setYearReleased } from '../../redux/detailMovieTVSlice';
 import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import DetailTrailer from '../detail-trailer';
@@ -12,7 +12,7 @@ const DetailHero = (props) => {
 
     const [getData, setGetData] = useState(null);
     const [showTrailer, setShowTrailer] = useState(false);
-    const { torrents } = useSelector((state) => state.detail_movie_tv)
+    const { torrents } = useSelector((state) => state.detail_movie_tv);
 
     let urlLink;
     if (props.media_type === 'movie') {
@@ -28,10 +28,14 @@ const DetailHero = (props) => {
         if (data != null) {
             setGetData(data);
 
-            dispatch(setMovieName(data.title));
-            dispatch(setImdbId(data.imdb_id));
+            if (props.media_type === 'movie') {
+                dispatch(setMovieName(data.title));
+                dispatch(setImdbId(data.imdb_id));
+                dispatch(setYearReleased(data.release_date.substring(0, 4)));
+            }
+
         }
-    }, [data, dispatch]);
+    }, [data, dispatch, props.media_type]);
 
 
 
@@ -299,28 +303,39 @@ const DetailHero = (props) => {
                                 View Trailer
                             </Button>
 
-                            <div className={styles.torrent_wrapper}>
-                                <h1>Download</h1>
-                                <div className={styles.torrents}>
-                                        {torrents !== [] &&
-                                            torrents.map(torrent => {
-                                                return (
-                                                    <a className={styles.torrent_item} key={torrent.url} href={`${torrent.url}`}>
-                                                        <p>
-                                                            <span className={styles.quality}> 
-                                                                {torrent.quality}
-                                                            </span> 
-                                                            .
-                                                            <span className={styles.type}>
-                                                                {torrent.type} 
-                                                            </span>
-                                                        </p>
-                                                    </a>
-                                                )
-                                            })
-                                        }
-                                </div>
-                            </div>
+                            {
+                                props.media_type === 'movie' &&
+                                (
+                                    <div className={styles.torrent_wrapper}>
+                                        <h1>Download</h1>
+                                        <div className={styles.torrents}>
+                                            {
+                                                torrents !== [] &&
+                                                torrents.map(torrent => {
+                                                    return (
+                                                        <a className={styles.torrent_item} key={torrent.url} href={`${torrent.url}`}>
+                                                            <p>
+                                                                <span className={styles.quality}>
+                                                                    {torrent.quality}
+                                                                </span>
+                                                                .
+                                                                <span className={styles.type}>
+                                                                    {torrent.type}
+                                                                </span>
+                                                            </p>
+                                                        </a>
+                                                    )
+                                                })
+                                            }
+                                            {
+                                                torrents.length === 0 && <p>No torrents found!</p>
+                                            }
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,8 @@ export const detailMovieTVSlice = createSlice({
         item_type : 'movie',
         movie_name : '',
         imdb_id : '',
-        torrents : []
+        torrents : [],
+        year_released : ''
     },
     reducers : {
         setItemId : (state, {payload}) => {
@@ -24,9 +25,12 @@ export const detailMovieTVSlice = createSlice({
         },
         setTorrents : (state, {payload}) => {
             state.torrents = payload;
+        },
+        setYearReleased : (state, {payload}) => {
+            state.year_released = payload;
         }
     }
 });
 
-export const { setItemId, setItemType, setImdbId, setMovieName, setTorrents } = detailMovieTVSlice.actions;
+export const { setItemId, setItemType, setImdbId, setMovieName, setTorrents, setYearReleased } = detailMovieTVSlice.actions;
 export default detailMovieTVSlice.reducer;

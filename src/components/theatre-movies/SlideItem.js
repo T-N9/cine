@@ -81,7 +81,7 @@ const SlideItem = (props) => {
                 </div>
                 <div className={styles.slide_content}>
                     {
-                    poster_path !== 'undefined' && 
+                    poster_path !== undefined && 
                     <img className={styles.poster} src={`https://www.themoviedb.org/t/p/original/${poster_path}`} alt={props.title} />
                     }
                     <div className={styles.label}>
