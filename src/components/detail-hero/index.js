@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
+import { setImdbId, setMovieName } from '../../redux/detailMovieTVSlice';
 import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import DetailTrailer from '../detail-trailer';
@@ -10,6 +12,7 @@ const DetailHero = (props) => {
 
     const [getData, setGetData] = useState(null);
     const [showTrailer, setShowTrailer] = useState(false);
+    const { torrents } = useSelector((state) => state.detail_movie_tv)
 
     let urlLink;
     if (props.media_type === 'movie') {
@@ -19,12 +22,18 @@ const DetailHero = (props) => {
     }
 
     const { loading, data, error } = useFetch(urlLink);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (data != null) {
             setGetData(data);
+
+            dispatch(setMovieName(data.title));
+            dispatch(setImdbId(data.imdb_id));
         }
-    }, [data]);
+    }, [data, dispatch]);
+
+
 
     let title,
         backdrop_path,
@@ -46,6 +55,7 @@ const DetailHero = (props) => {
 
     if (getData != null) {
         title = getData.name ? getData.name : getData.original_title;
+
         backdrop_path = getData.backdrop_path;
         poster_path = getData.poster_path;
 
@@ -61,7 +71,7 @@ const DetailHero = (props) => {
         const findOtherRatings_movie = () => {
             let getRating = getData.releases.countries;
             let i = 1;
-            if(getData.releases.countries === []) {
+            if (getData.releases.countries === []) {
                 do {
                     content_rating = getRating[getRating.length - i].certification;
                     i++;
@@ -69,7 +79,7 @@ const DetailHero = (props) => {
             } else {
                 content_rating = '';
             }
-            
+
 
         }
 
@@ -147,7 +157,7 @@ const DetailHero = (props) => {
                 return (item.type === 'Trailer' && item.official === true)
             });
 
-            if(trailer_official.length === 0) {
+            if (trailer_official.length === 0) {
                 trailer_official = data.videos.results.filter(item => {
                     return (item.type === 'Trailer')
                 });
@@ -182,8 +192,8 @@ const DetailHero = (props) => {
         poster_path = `https://www.themoviedb.org/t/p/original/${poster_path}`;
 
         release_date !== "" ?
-        release_year = release_date ? release_date.substring(0, 4) : first_air_date.substring(0, 4):
-        release_year = "Unknown"
+            release_year = release_date ? release_date.substring(0, 4) : first_air_date.substring(0, 4) :
+            release_year = "Unknown"
 
         function timeConvert(n) {
             var num = n;
@@ -244,7 +254,7 @@ const DetailHero = (props) => {
                                     <p className={styles.runtime}>
                                         <AccessTimeSharp />
                                         {runtime}
-                                    </p>                                }
+                                    </p>}
                                 {
                                     status === "In Production" &&
                                     <p className={styles.coming_soon}>
@@ -288,10 +298,34 @@ const DetailHero = (props) => {
                             <Button onClick={handleTrailer} variant='outlined' className={styles.trailer_btn}>
                                 View Trailer
                             </Button>
+
+                            <div className={styles.torrent_wrapper}>
+                                <h1>Download</h1>
+                                <div className={styles.torrents}>
+                                        {torrents !== [] &&
+                                            torrents.map(torrent => {
+                                                return (
+                                                    <a className={styles.torrent_item} key={torrent.url} href={`${torrent.url}`}>
+                                                        <p>
+                                                            <span className={styles.quality}> 
+                                                                {torrent.quality}
+                                                            </span> 
+                                                            .
+                                                            <span className={styles.type}>
+                                                                {torrent.type} 
+                                                            </span>
+                                                        </p>
+                                                    </a>
+                                                )
+                                            })
+                                        }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <DetailTrailer
                 trailer={trailer}
                 showTrailer={showTrailer}

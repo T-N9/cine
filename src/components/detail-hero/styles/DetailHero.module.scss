@@ -43,13 +43,13 @@
             }
             .detail_poster {
                 min-width: calUni(300px);
-                min-height: calc(450px);
+                max-height: calc(450px);
                 width: calUni(300px);
                 border-radius: 10px;
 
             @include m-breakpoint-down(small) {
                 min-width: calUni(200px);
-                min-height: calc(300px);
+                max-height: calc(300px);
                 width: calUni(200px);
             }
             }
@@ -188,7 +188,7 @@
             }
 
             .trailer_btn {
-                margin-top: 15px;
+                margin: 15px 0;
                 border-width: 2px;
                 border-color: rgba($clr-primary, 0.8);
                 color: rgba($clr-primary, 0.8);
@@ -200,6 +200,43 @@
                     color: rgba($clr-primary, 1);
                 }
             }
+
+            .torrent_wrapper {
+                margin: 1rem 0;
+
+                > h1 {
+                    margin-bottom: 5px;
+                }
+
+                .torrents {
+                    
+                    display: flex;
+                    flex-wrap: wrap;
+    
+                    > :not(:last-child) {
+                        margin-right: 5px;
+                    }
+                    .torrent_item {
+                        background: linear-gradient(1turn,$clr-primary,$clr-light);
+                        margin-bottom: 5px;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+    
+                        .type {
+                            text-transform: capitalize;
+                        }
+    
+                        .quality {
+                            font-weight: bold;
+                        }
+    
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
