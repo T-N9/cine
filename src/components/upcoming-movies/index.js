@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/UpcomingMovies.module.scss';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUpcomingMovieData } from '../../redux/upcomingMovieSlice';
 import useFetch from '../../hooks/useFetch';
 import UpcomingItem from './UpcomingItem';
 import { Button, CircularProgress } from '@mui/material';
@@ -9,6 +11,8 @@ const UpcomingMovies = () => {
 
     const [ getData, setGetData ] = useState(null);
     const [ maxNum , setMaxNum ] = useState(6);
+    const dispatch = useDispatch();
+    const { upcomingMoviesData } = useSelector((state) => state.upcoming_movies)
 
     const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`);
 
@@ -16,7 +20,11 @@ const UpcomingMovies = () => {
         if(data !== null) {
             setGetData(data);
         }
-    }, [ data ]);
+
+        if(upcomingMoviesData === null) {
+            dispatch(setUpcomingMovieData(data));
+        }
+    }, [ data , upcomingMoviesData,dispatch ]);
 
     const handelMaxNum = () => {
         setMaxNum( prev => prev+4);
@@ -25,7 +33,7 @@ const UpcomingMovies = () => {
     let movieList;
 
     if(getData !== null) {
-        movieList = getData.results.slice(0, maxNum).map( item => {
+        movieList = upcomingMoviesData.results.slice(0, maxNum).map( item => {
             return(
                 
                 <UpcomingItem

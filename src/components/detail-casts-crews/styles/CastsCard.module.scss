@@ -5,13 +5,14 @@
 .card_wrapper {
     display: inline-flex;
     flex-direction: column;
-    min-height: calUni(300px);
+    min-height: calUni(280px);
     background-color: $clr-wah;
     color: $clr-black;
-    width: calUni(150px);
+    width: calUni(120px);
     border-radius: 4px;
     overflow: hidden;
     box-shadow: rgba( $clr-light, 0.2) 0px 2px 8px 0px;
+    user-select: none;
 
     @include m-breakpoint-down(small) {
         width: calUni(110px);
@@ -22,7 +23,7 @@
         color :  $clr-primary;
         background-color: $clr-gray;
         width: 100%;
-        min-height: calUni(190px);
+        min-height: 9.575rem;
         @include flex-center;
 
         @include m-breakpoint-down(small) {
@@ -44,10 +45,10 @@
     }
     .name {
         font-weight: 700;
-        font-size: $fs-20;
+        font-size: 1rem;
 
         @include m-breakpoint-down(small) {
-            font-size: $fs-16;
+            font-size: 14px;
         }
     }
 

@@ -45,7 +45,7 @@ const DetailTorrent = (props) => {
 
     return (
         <section>
-            <h1>{props.imdb_id}</h1>
+            {/* <h1>{props.imdb_id}</h1> */}
         </section>
     );
 }

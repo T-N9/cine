@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { activeNavItem } from '../../redux/navActiveSlice';
+import { activeNavItem, toggleNavSM } from '../../redux/navActiveSlice';
 import { MenuRounded, CloseRounded } from '@mui/icons-material';
 import { logo } from '../../images';
 import styles from './styles/NavBar.module.scss';
@@ -10,11 +10,12 @@ const navList = ["home", "movies", "series", "people", "browse"]
 
 const NavBar = () => {
     const [ toggle, setToggle ] = useState(false);
-    const {current , logo_sm} = useSelector((state) => state.navActivate);
+    const {current , logo_sm , nav_sm} = useSelector((state) => state.navActivate);
     const dispatch = useDispatch();
 
     function toggleHandler () {
-        setToggle(prev => !prev);
+        // setToggle(prev => !prev);
+        dispatch(toggleNavSM());
     }
 
     const navItems = navList.map(item => {
@@ -48,13 +49,13 @@ const NavBar = () => {
                     </Link>
 
                     <div className={styles.nav_list}>
-                        <ul className={toggle ? `${styles.nav_items} ${styles.active}` : `${styles.nav_items}`}>
+                        <ul className={nav_sm ? `${styles.nav_items} ${styles.active}` : `${styles.nav_items}`}>
                             {navItems}
                         </ul>
 
                         <button onClick={toggleHandler} className={`${styles.hide_on_desktop} ${styles.menu_btn}`}>
                             {
-                                toggle ? <CloseRounded fontSize='large'/> :
+                                nav_sm ? <CloseRounded fontSize='large'/> :
                                 <MenuRounded fontSize='large'/> 
                             }
                         </button>                       

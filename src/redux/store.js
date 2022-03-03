@@ -5,6 +5,7 @@ import detailMovieTVReducer from './detailMovieTVSlice';
 import searchResultsReducer from './searchResultsSlice';
 import searchActiveReducer from "./searchActiveSlice";
 import theatreMoviesReducer from './theatreMoviesSlice';
+import upcomingMoviesReducer from './upcomingMovieSlice';
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         detail_movie_tv : detailMovieTVReducer,
         searchResults : searchResultsReducer,
         searchActive : searchActiveReducer,
-        theatreMovies : theatreMoviesReducer
+        theatreMovies : theatreMoviesReducer,
+        upcoming_movies : upcomingMoviesReducer
     },
 })

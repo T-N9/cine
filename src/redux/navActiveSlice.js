@@ -4,7 +4,8 @@ export const navActiveSlice = createSlice({
     name : 'navActivate',
     initialState : {
         current : "home",
-        logo_sm : false
+        logo_sm : false,
+        nav_sm : false
     },
     reducers : {
         activeNavItem : (state, action) => {
@@ -15,9 +16,12 @@ export const navActiveSlice = createSlice({
         },
         makeLogoSmall : (state) => {
             state.logo_sm = true;
+        },
+        toggleNavSM : (state) => {
+            state.nav_sm = !state.nav_sm;
         }
     },
 });
 
-export const { activeNavItem, makeLogoBig, makeLogoSmall } = navActiveSlice.actions;
+export const { activeNavItem, makeLogoBig, makeLogoSmall, toggleNavSM } = navActiveSlice.actions;
 export default navActiveSlice.reducer;
