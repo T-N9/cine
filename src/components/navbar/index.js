@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { activeNavItem, toggleNavSM } from '../../redux/navActiveSlice';
@@ -9,7 +9,7 @@ import styles from './styles/NavBar.module.scss';
 const navList = ["home", "movies", "series", "people", "browse"]
 
 const NavBar = () => {
-    const [ toggle, setToggle ] = useState(false);
+    // const [ toggle, setToggle ] = useState(false);
     const {current , logo_sm , nav_sm} = useSelector((state) => state.navActivate);
     const dispatch = useDispatch();
 
