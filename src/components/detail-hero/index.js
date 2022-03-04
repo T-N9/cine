@@ -16,9 +16,9 @@ const DetailHero = (props) => {
 
     let urlLink;
     if (props.media_type === 'movie') {
-        urlLink = `https://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`
+        urlLink = `https://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`;
     } else {
-        urlLink = `https://api.themoviedb.org/3/tv/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`
+        urlLink = `https://api.themoviedb.org/3/tv/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`;
     }
 
     const { loading, data, error } = useFetch(urlLink);
@@ -163,7 +163,13 @@ const DetailHero = (props) => {
 
             if (trailer_official.length === 0) {
                 trailer_official = data.videos.results.filter(item => {
-                    return (item.type === 'Trailer')
+                    if(item.type === 'Trailer') {
+                        return (item.type === 'Trailer')
+                    }
+                    else {
+                        return(item);
+                    }
+                    
                 });
             }
 

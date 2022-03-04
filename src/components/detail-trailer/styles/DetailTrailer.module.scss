@@ -38,6 +38,8 @@
         width: 100%;
         height: 100%;
         @include flex-center;
+        border: 2px solid $clr-primary;
+        border-radius: 5px;
         
         background-color: $clr-black;
         h1 {
@@ -49,6 +51,8 @@
         width: 100%;
         height: 100%;
         background-color: $clr-black;
+        border: 2px solid $clr-primary;
+        border-radius: 5px;
     }
 
     .cancel {
