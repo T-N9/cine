@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import styles from '../Pages.module.scss';
 import { useParams } from 'react-router-dom';
-import { DetailHero, DetailCasts, DetailTorrent } from '../components';
+import { DetailHero, DetailCasts, DetailTorrent, DetailInfo, Footer } from '../components';
 import { makeLogoSmall, activeNavItem } from '../redux/navActiveSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
@@ -40,6 +41,13 @@ const MovieDetail = () => {
                 movie_name = {movie_name}
                 year = {year_released}
             />
+            <div className={styles.container_x_md}>
+                <DetailInfo
+                    id = {item_id}
+                    media_type = {media_type}
+                />
+            </div>
+            <Footer/>
         </>
     );
 }

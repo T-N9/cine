@@ -4,6 +4,14 @@ import ScrollToTop from './helpers/ScrollToTop';
 import { NavBar } from './components';
 import { HomePage, MovieDetail, SeriesDetail, SearchResults, UpcomingMoviesPage } from './pages';
 
+/* 
+  Mother of all pages
+  mainly route pages can be found.
+
+  NavBar in all pages and 
+  ScrollToTop to start at the very top of every page.
+*/
+
 const App = () => {
 
   return (
@@ -18,7 +26,6 @@ const App = () => {
           <Route path="/upcoming" element={<UpcomingMoviesPage/>}/>
         </Routes>
       </ScrollToTop>
-      
     </main>
   );
 }

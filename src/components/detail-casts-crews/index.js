@@ -60,6 +60,11 @@ const DetailCasts = (props) => {
         })
 
         getcrews.filter(item => {
+            item.job === 'Novel' && crewsToShow.push(item);
+            return item.job === 'Novel';
+        })
+
+        getcrews.filter(item => {
             item.job === 'Characters' && crewsToShow.push(item);
             return item.job === 'Characters';
         })

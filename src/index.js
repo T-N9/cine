@@ -6,6 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 
+/* 
+  React Router applied
+  Redux store applied
+*/
+
 ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
