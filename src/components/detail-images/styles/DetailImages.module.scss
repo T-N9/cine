@@ -1,0 +1,37 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.backdrops {
+    width: 100%;
+    overflow: auto;
+    display: inline-flex;
+    border-radius: 10px;
+
+    .view_more {
+        color: $clr-wah;
+        @include flex-center;
+        border: 1px solid $clr-light;
+        background-color: $clr-black;
+
+        > p {
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+    }
+
+    .backdrop_item {
+        min-width: 350px;
+
+        @include m-breakpoint-down(small) {
+            min-width: 200px;
+        }
+        .image {
+            width: 350px;
+
+            @include m-breakpoint-down(small) {
+                width: 200px;
+            }
+        }
+    }
+}

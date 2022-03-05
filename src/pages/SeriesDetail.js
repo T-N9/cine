@@ -3,7 +3,7 @@ import styles from '../Pages.module.scss';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeLogoSmall, activeNavItem } from '../redux/navActiveSlice';
-import { DetailHero, DetailCasts, DetailInfo , Footer } from '../components';
+import { DetailHero, DetailCasts, DetailInfo , DetailImages, Footer } from '../components';
 import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
 
 const SeriesDetail = () => {
@@ -34,7 +34,13 @@ const SeriesDetail = () => {
                 id = {item_id}
                 media_type = {media_type}
             />
-            <div className={styles.container_x_md}>
+            <div className={`${styles.flex_media} ${styles.container_x_md}`}>
+                <div className={styles.media_wrapper}>
+                    <DetailImages
+                        id = {item_id}
+                        media_type = {media_type}
+                    />
+                </div>
                 <DetailInfo
                     id = {item_id}
                     media_type = {media_type}
