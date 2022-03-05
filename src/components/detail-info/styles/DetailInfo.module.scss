@@ -29,19 +29,20 @@
     .state_banner {
         
         .state_wrapper {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             p {
                 margin-bottom: 0;
             }
 
             .name {
+                font-weight: bold;
                 font-size: $fs-16;
-                margin-bottom: 5px;
+                margin-bottom: 2px;
             }
 
             .current {
                 font-size: $fs-16;
-                font-weight: bold;
+                
 
                 .keywords_flex {
                     display: flex;
@@ -50,6 +51,7 @@
                 .keyword {
                     border: 1px solid $clr-primary;
                     padding: 3px;
+                    background:  linear-gradient(1turn, $clr-gray, $clr-wah);
                     border-radius: 2px;
                     margin-right: 3px;
                     margin-bottom: 3px;

@@ -980,17 +980,32 @@ const DetailInfo = (props) => {
             return item.iso_639_1 === data.original_language
         })
         language = getLanguage[0].english_name;
-        budget = `$${data.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
-        revenue = `$${data.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+        data.budget && (budget = `$${data.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
+        data.revenue && (revenue = `$${data.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
 
-        keywords= data.keywords.keywords.map(item => {
+        data.keywords.keywords && 
+        (
+            keywords= data.keywords.keywords.map(item => {
             return (
-                <span className={styles.keyword}>
+                <span key={item.name} className={styles.keyword}>
                     {item.name}
                 </span>
             )
-        })
+            })
+        )
 
+        data.keywords.results && 
+        (
+            keywords= data.keywords.results.map(item => {
+            return (
+                <span key={item.name} className={styles.keyword}>
+                    {item.name}
+                </span>
+            )
+            })
+        )
+
+        keywords.length === 0 && (keywords = null);
     }
 
 
@@ -1051,33 +1066,49 @@ const DetailInfo = (props) => {
                                 {language}
                             </p>
                         </div>
-                        <div className={styles.state_wrapper}>
-                            <p className={styles.name}>
-                                Budget
-                            </p>
-                            <p className={styles.current}>
-                                {budget}
-                            </p>
-                        </div>
-                        <div className={styles.state_wrapper}>
-                            <p className={styles.name}>
-                                Revenue
-                            </p>
-                            <p className={styles.current}>
-                                {revenue}
-                            </p>
-                        </div>
+
+                        {
+                            props.media_type === 'movie' &&
+                            <div className={styles.state_wrapper}>
+                                <p className={styles.name}>
+                                    Budget
+                                </p>
+                                <p className={styles.current}>
+                                    {
+                                    budget ? budget : '-'
+                                    }
+                                </p>
+                            </div>
+                        }
+                        
+                        {
+                            props.media_type === 'movie' &&
+                            <div className={styles.state_wrapper}>
+                                <p className={styles.name}>
+                                    Revenue
+                                </p>
+                                <p className={styles.current}>
+                                    {
+                                    revenue ? revenue : '-'
+                                    
+                                    }
+                                </p>
+                            </div>
+                        }
+                        
                         <div className={styles.state_wrapper}>
                             <p className={styles.name}>
                                 Keywords
                             </p>
                             <p className={styles.current}>
-                                <div className={styles.keywords_flex}>
-                                    {keywords}
-                                </div>
-                                
+                                <span className={styles.keywords_flex}>
+                                    {
+                                     keywords === null ?
+                                     "No keywords have been added." : keywords
+                                    }
+                                </span>  
                             </p>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </section>
