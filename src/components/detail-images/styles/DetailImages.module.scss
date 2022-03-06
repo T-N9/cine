@@ -7,6 +7,12 @@
     overflow: auto;
     display: inline-flex;
     border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: $clr-black;
+
+    >:not(:last-child) {
+        margin-right: 5px;
+    }
 
     .view_more {
         color: $clr-wah;
