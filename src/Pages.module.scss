@@ -18,7 +18,6 @@
 .flex_media {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
 
     @include m-breakpoint-down(lmedium) {
         flex-direction: column;

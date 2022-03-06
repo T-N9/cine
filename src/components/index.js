@@ -7,6 +7,7 @@ export { default as DetailTorrent } from './detail-torrent';
 export { default as DetailInfo } from './detail-info';
 export { default as DetailImages } from './detail-images';
 export { default as DetailVideos } from './detail-videos';
+export { default as DetailRecommend } from './detail-recommend';
 export { default as SearchForAll} from './search-section';
 export { default as SearchHeader } from './search-header';
 export { default as SearchMovies } from './search-movies';

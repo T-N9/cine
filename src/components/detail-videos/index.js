@@ -18,7 +18,6 @@ const DetailVideos = (props) => {
     let trailers, trailersList;
 
     if(getData !== null) {
-        console.log(data);
 
         if(data.results.length >= 3){
             trailers = data.results.slice(0, 3);
