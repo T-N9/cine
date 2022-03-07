@@ -43,15 +43,21 @@
             }
             .detail_poster {
                 min-width: calUni(300px);
-                max-height: calc(450px);
+                min-height: calc(450px);
                 width: calUni(300px);
                 border-radius: 10px;
 
             @include m-breakpoint-down(small) {
                 min-width: calUni(200px);
-                max-height: calc(300px);
+                min-height: calc(300px);
                 width: calUni(200px);
             }
+            }
+
+            .placeholder {
+                background-color: $clr-gray;
+                @include flex-center;
+                color: $clr-primary;
             }
         }
 

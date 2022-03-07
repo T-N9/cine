@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
 import { setImdbId, setMovieName, setYearReleased } from '../../redux/detailMovieTVSlice';
-import { AccessTimeSharp, StarRateRounded, People } from '@mui/icons-material';
+import { AccessTimeSharp, StarRateRounded, People , InsertPhoto } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import DetailTrailer from '../detail-trailer';
 
@@ -196,10 +196,10 @@ const DetailHero = (props) => {
     );
 
 
-    let release_year, no_rate;
+    let release_year, no_rate , poster_path_url;
     if (backdrop_path !== undefined && poster_path !== undefined) {
         backdrop_path = `https://www.themoviedb.org/t/p/original/${backdrop_path}`;
-        poster_path = `https://www.themoviedb.org/t/p/original/${poster_path}`;
+        poster_path_url = `https://www.themoviedb.org/t/p/original/${poster_path}`;
 
         release_date !== "" ?
             release_year = release_date ? release_date.substring(0, 4) : first_air_date.substring(0, 4) :
@@ -234,7 +234,12 @@ const DetailHero = (props) => {
                 </div>
                 <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
                     <div className={styles.flex_section}>
-                        <img className={styles.detail_poster} src={`${poster_path}`} alt={`${title} poster`} />
+                        {   poster_path !== null ?
+                            <img className={styles.detail_poster} src={`${poster_path_url}`} alt={`${title} poster`} /> :
+                            <div className={`${styles.detail_poster} ${styles.placeholder}`}>
+                                <InsertPhoto/>
+                            </div>
+                        }
                         <div className={styles.detail_movie_content}>
                             <div className={styles.detail_header}>
                                 <h1 className={styles.title}>{title}
