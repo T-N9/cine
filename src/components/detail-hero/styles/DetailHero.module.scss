@@ -43,7 +43,7 @@
             }
             .detail_poster {
                 min-width: calUni(300px);
-                min-height: calc(450px);
+                max-height: calc(450px);
                 width: calUni(300px);
                 border-radius: 10px;
 
