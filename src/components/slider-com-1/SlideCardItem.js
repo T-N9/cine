@@ -31,7 +31,7 @@ const SlideCardItem = (props) => {
             <div className={styles.wrapper}>
                 <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>
                     <img
-                        src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${props.image}`}
+                        src={`https://www.themoviedb.org/t/p/w500/${props.image}`}
                         alt={`${props.title} poster`}
                         className={styles.image}
                     />

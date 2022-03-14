@@ -35,7 +35,7 @@ const UpcomingItem = (props) => {
         <div className={styles.upcoming_item}>
             <div className={styles.wrapper}>
                 <div className={styles.poster}>
-                    <img src={`https://www.themoviedb.org/t/p/original/${props.poster_path}`} alt={`${props.title} poster`} />
+                    <img src={`https://www.themoviedb.org/t/p/w185/${props.poster_path}`} alt={`${props.title} poster`} />
                 </div>
                 <div className={styles.content}>
                     <Link onClick={getItemInfo} to={`/${route_type}/${props.id}`}>

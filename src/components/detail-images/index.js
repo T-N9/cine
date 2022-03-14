@@ -28,7 +28,7 @@ const DetailImages = (props) => {
         backdropsList = backdrops.map(item => {
             return (
                 <div key={nanoid()} className={styles.backdrop_item}>
-                    <img className={styles.image} src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="backdrops" />
+                    <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${item.file_path}`} alt="backdrops" />
                 </div>
             )
         })
