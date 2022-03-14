@@ -60,7 +60,7 @@ const SlideItem = (props) => {
         <>
             <div className={styles.slide_item}>
                 <div className={styles.slide_cover}
-                    style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${props.backdrop_path})` }}
+                    style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/w1280/${props.backdrop_path})` }}
                 >
                     <TheatreTrailer
                         trailer={trailer}
@@ -82,7 +82,7 @@ const SlideItem = (props) => {
                 <div className={styles.slide_content}>
                     {
                     poster_path !== undefined && 
-                    <img className={styles.poster} src={`https://www.themoviedb.org/t/p/original/${poster_path}`} alt={props.title} />
+                    <img className={styles.poster} src={`https://www.themoviedb.org/t/p/w185/${poster_path}`} alt={props.title} />
                     }
                     <div className={styles.label}>
                         <div>

@@ -198,7 +198,7 @@ const DetailHero = (props) => {
 
     let release_year, no_rate , poster_path_url;
     if (backdrop_path !== undefined && poster_path !== undefined) {
-        backdrop_path = `https://www.themoviedb.org/t/p/original/${backdrop_path}`;
+        backdrop_path = `https://www.themoviedb.org/t/p/w342/${backdrop_path}`;
         poster_path_url = `https://www.themoviedb.org/t/p/original/${poster_path}`;
 
         release_date !== "" ?
