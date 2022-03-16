@@ -11,7 +11,7 @@ const SearchForAll = () => {
 
     const enterHandler = (e) => {
         e.preventDefault();
-        navigate(`/search/${formValue}`);
+        navigate(`/search/${formValue}/1`);
     }
 
     const changeHandler = (e) => {

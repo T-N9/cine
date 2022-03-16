@@ -8,6 +8,7 @@
 
     .result_flex {
         > :not(:last-child) {
+            display: block;
             margin-bottom: 10px;
 
             @include m-breakpoint-down(large) {

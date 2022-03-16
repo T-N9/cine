@@ -87,6 +87,7 @@ const SearchSeries = (props) => {
                     goToBackPage = { goToBackPage }
                     goToNextPage = { goToNextPage }
                     totalPages = {total_pages}
+                    query = {props.query}
                 />
             </div>
         </section>

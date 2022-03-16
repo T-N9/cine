@@ -14,6 +14,7 @@ import { HomePage, MovieDetail, SeriesDetail, SearchResults, UpcomingMoviesPage 
 
 const App = () => {
 
+
   return (
     <main>
       <NavBar/>
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/movies/:id" element={<MovieDetail/>}/>
           <Route path="/series/:id" element={<SeriesDetail/>}/>
-          <Route path="/search/:query" element={<SearchResults/>}/>
+          <Route path={`/search/:query/:page`} element={<SearchResults/>}/>
           <Route path="/upcoming" element={<UpcomingMoviesPage/>}/>
         </Routes>
       </ScrollToTop>

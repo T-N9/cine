@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './styles/SearchAside.module.scss';
+import { Link } from 'react-router-dom';
 import { useSelector , useDispatch} from 'react-redux';
 import { setSearchActive } from '../../redux/searchActiveSlice';
 
-const SearchAside = () => {
+const SearchAside = (props) => {
 
     const dispatch = useDispatch();
     const { movies, series } = useSelector((state) => state.searchResults);
@@ -25,15 +26,17 @@ const SearchAside = () => {
 
     const resultList = resultCategories.map(item => {
         return (
-            <div onClick={() => handleSearchActive(item.name)} key={item.name} className={ current === item.name ? `${styles.category} ${styles.cate_active}` : `${styles.category}`}>
-                <p>
-                    {item.name}
-                </p>
-
-                <span className={styles.qty}>
-                    {item.qty}
-                </span>
-            </div>
+            <Link key={item.name} to={`/search/${props.query}/1`}>
+                <div onClick={() => handleSearchActive(item.name)} className={ current === item.name ? `${styles.category} ${styles.cate_active}` : `${styles.category}`}>
+                    <p>
+                        {item.name}
+                    </p>
+                
+                    <span className={styles.qty}>
+                        {item.qty}
+                    </span>
+                </div>
+            </Link>
         )
     })
 

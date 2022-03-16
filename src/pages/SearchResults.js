@@ -6,12 +6,12 @@ import { SearchHeader, SearchMovies, SearchAside, SearchSeries } from '../compon
 import styles from '../Pages.module.scss';
 
 const SearchResults = () => {
-    const { query } = useParams();
+    const { query, page } = useParams();
     const dispatch = useDispatch();
 
     useEffect(()=> {
         dispatch(makeLogoSmall());
-    })
+    });
 
 
     return (
@@ -19,10 +19,12 @@ const SearchResults = () => {
             <SearchHeader query = {query}/>  
             <section className={styles.search_result_route_wrapper}>
                 <div className={styles.search_wrapper}>
-                    <SearchMovies query = {query}/>
-                    <SearchSeries query = {query}/>
+                    <SearchMovies query = {query} page={parseInt(page)}/>
+                    <SearchSeries query = {query} page={parseInt(page)}/>
                 </div>
-                <SearchAside/>
+                <SearchAside
+                    query = {query}
+                />
             </section>
         </>
     );

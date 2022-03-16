@@ -13,9 +13,9 @@ import Pagination from '../pagination';
 const SearchMovies = (props) => {
 
     const [ getData, setGetData ] = useState(null);
-    const [ page, setPage] = useState(1);
-    const { current } = useSelector((state) => state.searchActive)
-    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/search/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=${props.query}&page=${page}`);
+    const [ page, setPage] = useState(props.page);
+    const { current } = useSelector((state) => state.searchActive);
+    const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/search/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=${props.query}&page=${props.page}`);
 
     const dispatch = useDispatch();
 
@@ -36,11 +36,11 @@ const SearchMovies = (props) => {
     }
 
     const goToBackPage = () => {
-        setPage( prev => prev-1)
+        setPage( prev => prev-1);
     }
 
     const goToNextPage = () => {
-        setPage( prev => prev+1)
+        setPage( prev => prev+1);
     }
 
     let movieResults, total_pages;
@@ -86,6 +86,7 @@ const SearchMovies = (props) => {
                     goToBackPage = { goToBackPage }
                     goToNextPage = { goToNextPage }
                     totalPages = {total_pages}
+                    query = {props.query}
                 />
             </div>
         </section>

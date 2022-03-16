@@ -47,7 +47,7 @@ const SearchHeader = (props) => {
 
     const enterHandler = (e) => {
         e.preventDefault();
-        navigate(`/search/${formValue}`);
+        navigate(`/search/${formValue}/1`);
         setDisplay(false);
     }
 
@@ -61,7 +61,7 @@ const SearchHeader = (props) => {
         setFormValue(value);
         setAutoComData(false);
 
-        navigate(`/search/${value}`);
+        navigate(`/search/${value}/1`);
         setDisplay(false);
     }
 
