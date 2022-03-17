@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
+import { MetaTags } from 'react-meta-tags';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
 import { setImdbId, setMovieName, setYearReleased } from '../../redux/detailMovieTVSlice';
-import { AccessTimeSharp, StarRateRounded, People , InsertPhoto } from '@mui/icons-material';
+import { AccessTimeSharp, StarRateRounded, People, InsertPhoto } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import DetailTrailer from '../detail-trailer';
 
@@ -163,17 +164,22 @@ const DetailHero = (props) => {
 
             if (trailer_official.length === 0) {
                 trailer_official = data.videos.results.filter(item => {
-                    if(item.type === 'Trailer') {
+                    if (item.type === 'Trailer') {
                         return (item.type === 'Trailer')
                     }
                     else {
-                        return(item);
+                        return (item);
                     }
-                    
+
                 });
             }
 
-            trailer = trailer_official[0].key;
+            if (trailer_official[0]) {
+                trailer = trailer_official[0].key;
+            } else {
+                trailer = null;
+            }
+
         } else {
             trailer = null;
         }
@@ -196,7 +202,7 @@ const DetailHero = (props) => {
     );
 
 
-    let release_year, no_rate , poster_path_url;
+    let release_year, no_rate, poster_path_url;
     if (backdrop_path !== undefined && poster_path !== undefined) {
         backdrop_path = `https://www.themoviedb.org/t/p/w342/${backdrop_path}`;
         poster_path_url = `https://www.themoviedb.org/t/p/w342/${poster_path}`;
@@ -223,142 +229,165 @@ const DetailHero = (props) => {
         setShowTrailer(prev => !prev);
     }
 
+    let metaMedia = media_type === 'movie' ? 'movies' : 'series';
+
     return (
-        <section
-            className={styles.detail_hero}
-            style={{ backgroundImage: `url(${backdrop_path})` }}
-        >
-            <div className={styles.detail_wrapper}>
-                <div className={styles.d_none}>
-                    {status && media_type}
-                </div>
-                <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
-                    <div className={styles.flex_section}>
-                        {   poster_path !== null ?
-                            <img className={styles.detail_poster} src={`${poster_path_url}`} alt={`${title} poster`} /> :
-                            <div className={`${styles.detail_poster} ${styles.placeholder}`}>
-                                <InsertPhoto/>
-                            </div>
-                        }
-                        <div className={styles.detail_movie_content}>
-                            <div className={styles.detail_header}>
-                                <h1 className={styles.title}>{title}
-                                    <span className={styles.year}>( {release_year} )</span>
-                                </h1>
+        <>
+            <MetaTags>
+                <title>{title} | CINE</title>
+                <meta name="title" content={`${title} | CINE`}></meta>
+                {/* <!-- Open Graph / Facebook --> */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`https://ci-ne.vercel.app/${metaMedia}/${props.id}`} />
+                <meta property="og:title" content={`${title} | CINE`} />
+                <meta property="og:description"
+                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
+                <meta property="og:image" content={backdrop_path} />
 
-                            </div>
-                            <div className={styles.detail_neck}>
-                                {
-                                    content_rating &&
-                                    <div className={styles.content_rating}>
-                                        <p>{content_rating}</p>
-                                    </div>
-                                }
+                {/* <!-- Twitter --> */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content={`https://ci-ne.vercel.app/${metaMedia}/${props.id}`} />
+                <meta property="twitter:title" content={`${title} | CINE`} />
+                <meta property="twitter:description"
+                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
+                <meta property="twitter:image" content={backdrop_path}/>
+            </MetaTags>
+            <section
+                className={styles.detail_hero}
+                style={{ backgroundImage: `url(${backdrop_path})` }}
+            >
+                <div className={styles.detail_wrapper}>
+                    <div className={styles.d_none}>
+                        {status && media_type}
+                    </div>
+                    <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
+                        <div className={styles.flex_section}>
+                            {poster_path !== null ?
+                                <img className={styles.detail_poster} src={`${poster_path_url}`} alt={`${title} poster`} /> :
+                                <div className={`${styles.detail_poster} ${styles.placeholder}`}>
+                                    <InsertPhoto />
+                                </div>
+                            }
+                            <div className={styles.detail_movie_content}>
+                                <div className={styles.detail_header}>
+                                    <h1 className={styles.title}>{title}
+                                        <span className={styles.year}>( {release_year} )</span>
+                                    </h1>
 
-                                <p className={styles.genres}>
+                                </div>
+                                <div className={styles.detail_neck}>
                                     {
-                                        genres.map(item => {
-                                            return (
-                                                <span key={item} className={styles.genre}>{item}</span>
-                                            )
-                                        }
-                                        )}
-                                </p>
-                                {
-                                    (runtime !== 'm' && runtime !== 'undefinedm') &&
-                                    <p className={styles.runtime}>
-                                        <AccessTimeSharp />
-                                        {runtime}
-                                    </p>
-                                }
-                                {
-                                    status === "In Production" &&
-                                    <p className={styles.coming_soon}>
-                                        Coming Soon
-                                    </p>
-                                }
-                            </div>
-                            {
-                                tagline &&
-                                <div className={styles.tagline}>
-                                    <p>
-                                        " {tagline} "
-                                    </p>
-                                </div>
-                            }
-                            <div className={styles.overview}>
-                                <h1>Overview</h1>
-                                <p>
-                                    {overview}
-                                </p>
-                            </div>
-                            <div className={styles.info}>
-                                <div>
-                                    <span className={styles.icon}>
-                                        <StarRateRounded />
-                                    </span>
-                                    <h1>
-                                        {rating === 0 ? no_rate : rating}
-                                    </h1>
-                                </div>
-
-                                <div>
-                                    <span className={styles.icon}>
-                                        <People />
-                                    </span>
-                                    <h1>
-                                        {popularity}
-                                    </h1>
-                                </div>
-                            </div>
-                            <Button onClick={handleTrailer} variant='outlined' className={styles.trailer_btn}>
-                                View Trailer
-                            </Button>
-
-                            {
-                                props.media_type === 'movie' &&
-                                (
-                                    <div className={styles.torrent_wrapper}>
-                                        <h1>Download</h1>
-                                        <div className={styles.torrents}>
-                                            {
-                                                torrents !== [] &&
-                                                torrents.map(torrent => {
-                                                    return (
-                                                        <a className={styles.torrent_item} key={torrent.url} href={`${torrent.url}`}>
-                                                            <p>
-                                                                <span className={styles.quality}>
-                                                                    {torrent.quality}
-                                                                </span>
-                                                                .
-                                                                <span className={styles.type}>
-                                                                    {torrent.type}
-                                                                </span>
-                                                            </p>
-                                                        </a>
-                                                    )
-                                                })
-                                            }
-                                            {
-                                                torrents.length === 0 && <p>No torrents found!</p>
-                                            }
+                                        content_rating &&
+                                        <div className={styles.content_rating}>
+                                            <p>{content_rating}</p>
                                         </div>
+                                    }
+
+                                    <p className={styles.genres}>
+                                        {
+                                            genres.map(item => {
+                                                return (
+                                                    <span key={item} className={styles.genre}>{item}</span>
+                                                )
+                                            }
+                                            )}
+                                    </p>
+                                    {
+                                        (runtime !== 'm' && runtime !== 'undefinedm') &&
+                                        <p className={styles.runtime}>
+                                            <AccessTimeSharp />
+                                            {runtime}
+                                        </p>
+                                    }
+                                    {
+                                        status === "In Production" &&
+                                        <p className={styles.coming_soon}>
+                                            Coming Soon
+                                        </p>
+                                    }
+                                </div>
+                                {
+                                    tagline &&
+                                    <div className={styles.tagline}>
+                                        <p>
+                                            " {tagline} "
+                                        </p>
                                     </div>
-                                )
-                            }
+                                }
+                                <div className={styles.overview}>
+                                    <h1>Overview</h1>
+                                    <p>
+                                        {overview}
+                                    </p>
+                                </div>
+                                <div className={styles.info}>
+                                    <div>
+                                        <span className={styles.icon}>
+                                            <StarRateRounded />
+                                        </span>
+                                        <h1>
+                                            {rating === 0 ? no_rate : rating}
+                                        </h1>
+                                    </div>
+
+                                    <div>
+                                        <span className={styles.icon}>
+                                            <People />
+                                        </span>
+                                        <h1>
+                                            {popularity}
+                                        </h1>
+                                    </div>
+                                </div>
+                                <Button onClick={handleTrailer} variant='outlined' className={styles.trailer_btn}>
+                                    View Trailer
+                                </Button>
+
+                                {
+                                    props.media_type === 'movie' &&
+                                    (
+                                        <div className={styles.torrent_wrapper}>
+                                            <h1>Download</h1>
+                                            <div className={styles.torrents}>
+                                                {
+                                                    torrents !== [] &&
+                                                    torrents.map(torrent => {
+                                                        return (
+                                                            <a className={styles.torrent_item} key={torrent.url} href={`${torrent.url}`}>
+                                                                <p>
+                                                                    <span className={styles.quality}>
+                                                                        {torrent.quality}
+                                                                    </span>
+                                                                    .
+                                                                    <span className={styles.type}>
+                                                                        {torrent.type}
+                                                                    </span>
+                                                                </p>
+                                                            </a>
+                                                        )
+                                                    })
+                                                }
+                                                {
+                                                    torrents.length === 0 && <p>No torrents found!</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                }
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <DetailTrailer
-                trailer={trailer}
-                showTrailer={showTrailer}
-                handleTrailer={handleTrailer}
-            />
-        </section>
+                <DetailTrailer
+                    trailer={trailer}
+                    showTrailer={showTrailer}
+                    handleTrailer={handleTrailer}
+                />
+            </section>
+        </>
     );
 }
 
