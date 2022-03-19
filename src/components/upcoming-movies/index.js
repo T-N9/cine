@@ -68,7 +68,7 @@ const UpcomingMovies = () => {
                         Upcoming Movies
                     </h1>
 
-                    <Link to="/upcoming">
+                    <Link to="/upcoming/1">
                         <div className={styles.view_all_btn}>
                             <p>
                                 View All

@@ -17,4 +17,5 @@ export { default as TheatreMovies } from './theatre-movies';
 export { default as TheatreTrailer } from './theatre-trailer';
 export { default as UpcomingMovies } from './upcoming-movies';
 export { default as UpcomingAllMovies } from './upcoming-all-movies';
+export { default as MovieContent } from './movie-content';
 export { default as Footer } from './footer';

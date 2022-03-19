@@ -6,6 +6,9 @@ import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material
 const Pagination = (props) => {
 
     let page_arr = [], paginationNow, endOfPagination, startOfPagination, paginationStart, paginationEnd;
+
+    let routeUrl;
+
     if (props.page != null) {
 
         for (let i = 1; i <= props.totalPages; i++) {
@@ -27,11 +30,24 @@ const Pagination = (props) => {
             paginateShow = page_arr;
         }
 
+        
+        switch (props.type) {
+            case "search":
+                routeUrl = `/search/${props.query}/`
+                break;
+            case "upcoming":
+                routeUrl = `/upcoming/`
+                break;
+            
+            default:
+                break;
+        }
+
 
         paginationNow = paginateShow.map((item) => {
             return (
-                <Link  key={item} to={`/search/${props.query}/${item}`}>
-                    <div className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
+                <Link  key={item} to={`${routeUrl}${item}`}>
+                    <div onClick={() => props.pageClick(item)} className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
                         <p>{item}</p>
                     </div>
                 </Link>
@@ -41,8 +57,8 @@ const Pagination = (props) => {
         if (page_arr.length > 7 && props.page < page_arr.length - 3) {
             endOfPagination = paginationEnd.map((item) => {
                 return (
-                    <Link  key={item} to={`/search/${props.query}/${item}`}>
-                        <div className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
+                    <Link  key={item} to={`${routeUrl}${item}`}>
+                        <div onClick={() => props.pageClick(item)} className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
                             <p>{item}</p>
                         </div>
                     </Link>
@@ -57,8 +73,8 @@ const Pagination = (props) => {
         if (props.page > 7) {
             startOfPagination = paginationStart.map((item) => {
                 return (
-                    <Link key={item} to={`/search/${props.query}/${item}`}>
-                        <div className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
+                    <Link key={item} to={`${routeUrl}${item}`}>
+                        <div onClick={() => props.pageClick(item)} className={item === props.page ? `${styles.paginate_page}  ${styles.active_page}` : `${styles.paginate_page}`}>
                             <p>{item}</p>
                         </div>
                     </Link>
@@ -80,7 +96,7 @@ const Pagination = (props) => {
                             </button>
                         ) :
                         (
-                            <Link to={`/search/${props.query}/${props.page - 1}`}>
+                            <Link to={`${routeUrl}${props.page - 1}`}>
                                 <button onClick={props.goToBackPage} disabled={props.page === 1}>
                                     <ArrowBackIosRounded />
                                 </button>
@@ -103,7 +119,7 @@ const Pagination = (props) => {
                         )
                         :
                         (
-                            <Link to={`/search/${props.query}/${props.page + 1}`}>
+                            <Link to={`${routeUrl}${props.page + 1}`}>
                                 <button onClick={props.goToNextPage} disabled={props.page === page_arr.length}>
                                     <ArrowForwardIosRounded />
                                 </button>

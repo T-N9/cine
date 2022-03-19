@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
-import { MetaTags } from 'react-meta-tags';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
@@ -233,25 +232,6 @@ const DetailHero = (props) => {
 
     return (
         <>
-            <MetaTags>
-                <title>{title} | CINE</title>
-                <meta name="title" content={`${title} | CINE`}></meta>
-                {/* <!-- Open Graph / Facebook --> */}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`https://ci-ne.vercel.app/${metaMedia}/${props.id}`} />
-                <meta property="og:title" content={`${title} | CINE`} />
-                <meta property="og:description"
-                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
-                <meta property="og:image" content={backdrop_path} />
-
-                {/* <!-- Twitter --> */}
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content={`https://ci-ne.vercel.app/${metaMedia}/${props.id}`} />
-                <meta property="twitter:title" content={`${title} | CINE`} />
-                <meta property="twitter:description"
-                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
-                <meta property="twitter:image" content={backdrop_path}/>
-            </MetaTags>
             <section
                 className={styles.detail_hero}
                 style={{ backgroundImage: `url(${backdrop_path})` }}

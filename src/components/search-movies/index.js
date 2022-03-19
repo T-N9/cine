@@ -87,6 +87,7 @@ const SearchMovies = (props) => {
                     goToNextPage = { goToNextPage }
                     totalPages = {total_pages}
                     query = {props.query}
+                    type="search"
                 />
             </div>
         </section>

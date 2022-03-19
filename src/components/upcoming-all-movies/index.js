@@ -5,11 +5,11 @@ import useFetch from '../../hooks/useFetch';
 import UpcomingItem from '../upcoming-movies/UpcomingItem';
 import Pagination from '../pagination';
 
-const UpcomingAllMovies = () => {
+const UpcomingAllMovies = (props) => {
 
 
     const [ getData, setGetData ] = useState(null);
-    const [ page, setPage] = useState(1);
+    const [ page, setPage] = useState(props.page);
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US&page=${page}`);
 
     useEffect(() => {
@@ -72,6 +72,7 @@ const UpcomingAllMovies = () => {
                     goToBackPage = { goToBackPage }
                     goToNextPage = { goToNextPage }
                     totalPages = {total_pages}
+                    type = "upcoming"
                 />
             </div>
         </section>
