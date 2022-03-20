@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import { SearchHeader } from '../components';
+import Helmet from 'react-helmet';
+import { SearchHeader, Footer } from '../components';
 import { useDispatch } from 'react-redux';
 import { makeLogoSmall } from '../redux/navActiveSlice';
 import { MovieContent } from '../components';
@@ -13,8 +14,12 @@ const MoviePage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Discover Movies</title>
+            </Helmet>
             <SearchHeader query=''/>
             <MovieContent/>
+            <Footer/>
         </>
     )
 }

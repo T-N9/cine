@@ -2,7 +2,7 @@ import React, { useState ,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { makeLogoSmall } from '../redux/navActiveSlice';
-import { SearchHeader, SearchMovies, SearchAside, SearchSeries } from '../components';
+import { SearchHeader, SearchMovies, SearchAside, SearchSeries, Footer } from '../components';
 import styles from '../Pages.module.scss';
 
 const SearchResults = () => {
@@ -29,6 +29,7 @@ const SearchResults = () => {
                     query = {query}
                 />
             </section>
+            <Footer/>
         </>
     );
 }

@@ -28,7 +28,8 @@ const App = () => {
           <Route path={`/upcoming/`} element={<UpcomingMoviesPage/>}/>
           <Route path={`/upcoming/:page`} element={<UpcomingMoviesPage/>}/>
 
-          <Route path={`/movies`} element={<MoviePage/>}/>
+          <Route path={`/discover/movies/`} element={<MoviePage/>}/>
+          <Route path={`/discover/movies/:type`} element={<MoviePage/>}/>
         </Routes>
       </ScrollToTop>
     </main>

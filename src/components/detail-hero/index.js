@@ -228,8 +228,6 @@ const DetailHero = (props) => {
         setShowTrailer(prev => !prev);
     }
 
-    let metaMedia = media_type === 'movie' ? 'movies' : 'series';
-
     return (
         <>
             <section

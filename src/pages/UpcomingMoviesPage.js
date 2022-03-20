@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeLogoSmall } from '../redux/navActiveSlice';
-import { SearchHeader, UpcomingAllMovies } from '../components';
+import { SearchHeader, UpcomingAllMovies, Footer } from '../components';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -23,6 +23,7 @@ const UpcomingMoviesPage = () => {
             <UpcomingAllMovies
                 page = {pageUrl}
             />
+            <Footer/>
         </>
     );
 }

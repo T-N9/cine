@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import {render} from 'react-snapshot';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,7 +12,8 @@ import App from './App';
   Redux store applied
 */
 
-ReactDOM.render(
+// ReactDOM.render(
+  render(
     <Provider store={store}>
       <BrowserRouter>
         <App />

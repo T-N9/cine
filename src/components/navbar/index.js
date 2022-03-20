@@ -22,9 +22,12 @@ const NavBar = () => {
         let path;
         if (item === "home") {
             path= "/";
+        }else if( item === "movies" || item === "series"){
+            path= `discover/${item}`;
         }else {
-            path= `/${item}`;
+            path = `/${item}`;
         }
+        
         return (
             <li onClick={() => {
                 dispatch(activeNavItem(item));
