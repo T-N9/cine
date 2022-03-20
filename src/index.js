@@ -1,6 +1,6 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
-import {render} from 'react-snapshot';
+import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,12 +12,14 @@ import App from './App';
   Redux store applied
 */
 
-// ReactDOM.render(
-  render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
+ReactDOM.render(
+  // render(
+   <HelmetProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+   </HelmetProvider>,
   document.getElementById('root')
 );
