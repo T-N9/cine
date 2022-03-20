@@ -16,6 +16,9 @@ const MoviePage = () => {
         <>
             <Helmet>
                 <title>Discover Movies</title>
+                {/* <!-- Open Graph / Facebook --> */}
+                <meta property="og:type" content="website"/>
+                <meta property="og:url" content="https://ci-ne.vercel.app/discover/movies"/>
                 <meta property="og:title" content="Discover Movies" />
                 <meta property="og:description"
                     content="Discover movies in CINE." />
