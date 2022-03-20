@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { SearchHeader, Footer } from '../components';
 import { useDispatch } from 'react-redux';
@@ -8,7 +8,7 @@ import { MovieContent } from '../components';
 const MoviePage = () => {
 
     const dispatch = useDispatch();
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(makeLogoSmall());
     })
 
@@ -16,10 +16,13 @@ const MoviePage = () => {
         <>
             <Helmet>
                 <title>Discover Movies</title>
+                <meta property="og:title" content="Discover Movies" />
+                <meta property="og:description"
+                    content="Discover movies in CINE." />
             </Helmet>
-            <SearchHeader query=''/>
-            <MovieContent/>
-            <Footer/>
+            <SearchHeader query='' />
+            <MovieContent />
+            <Footer />
         </>
     )
 }
