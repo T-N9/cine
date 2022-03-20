@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Helmet from 'react-helmet';
 import { SearchHeader, Footer } from '../components';
 import { useDispatch } from 'react-redux';
 import { makeLogoSmall } from '../redux/navActiveSlice';
@@ -14,15 +14,11 @@ const MoviePage = () => {
 
     return (
         <>
-            <Helmet prioritizeSeoTags>
-                <title>Discover Movies</title>
-                <link rel="canonical" href="https://ci-ne.vercel.app/discover/movies" />
-                {/* <!-- Open Graph / Facebook --> */}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://ci-ne.vercel.app/discover/movies" />
-                <meta property="og:title" content="CINE | Discover Movies" />
-                <meta property="og:description"
-                    content="Discover movies with CINE" />
+            <Helmet>
+                <title>Discover movies | CINE</title>
+                <meta name="title" content="Discover movies | CINE" />
+                <meta name="description"
+                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
             </Helmet>
             <SearchHeader query='' />
             <MovieContent />

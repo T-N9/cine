@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Helmet from 'react-helmet';
 import { HomeHero, PopularNow, SearchForAll, TheatreMovies, UpcomingMovies, Footer } from '../components';
 import { makeLogoBig, activeNavItem } from '../redux/navActiveSlice';
 import { setSearchActive } from '../redux/searchActiveSlice'
@@ -14,12 +15,18 @@ const Homepage = () => {
 
     return (
         <>
-            <HomeHero/>
-            <SearchForAll/>
-            <PopularNow/>
-            <TheatreMovies/>
-            <UpcomingMovies/>
-            <Footer/>
+            <Helmet>
+                <title>CINE | Live cinematic information</title>
+                <meta name="title" content="CINE | Live cinematic information" />
+                <meta name="description"
+                    content="A website that provides you cinematic data with stunning UI. Torrents for movies are also available and just a touch to download them." />
+            </Helmet>
+            <HomeHero />
+            <SearchForAll />
+            <PopularNow />
+            <TheatreMovies />
+            <UpcomingMovies />
+            <Footer />
         </>
     );
 }
