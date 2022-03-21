@@ -31,6 +31,10 @@ const MoviePage = () => {
             'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=27`
         },
         {
+            'title' : 'thriller',
+            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=53`
+        },
+        {
             'title' : 'crime',
             'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=80`
         },

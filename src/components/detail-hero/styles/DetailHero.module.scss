@@ -110,6 +110,12 @@
                 display: flex;
                 flex-wrap: wrap;
 
+                > * {
+                    @include m-breakpoint-down(small) {
+                        margin-top: 1rem;
+                    }
+                }
+
                 .genre {
                     padding: 2.5px 5px;
                     border-radius: 20px;
