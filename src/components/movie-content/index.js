@@ -7,7 +7,7 @@ import useFetch from "../../hooks/useFetch";
 import SearchResultCard from "../search-results-cards";
 import { Link, useParams } from 'react-router-dom';
 
-const MovieContent = () => {
+const MovieContent = ({categoryList, setType }) => {
 
 
     const { type } = useParams();
@@ -24,56 +24,8 @@ const MovieContent = () => {
 
     useEffect(()=> [
         type ? setGetType(type) : setGetType('popular')
-
  
     ], [type]);
-
-    const categoryList = [
-        {
-            'title' : 'popular',
-            'url' : `movie/popular?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`
-        },
-        {
-            'title' : 'top rated',
-            'url' : `movie/top_rated?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&language=en-US`
-        },
-        {
-            'title' : 'action',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=28`
-        },
-        {
-            'title' : 'comedy',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=35`
-        },
-        {
-            'title' : 'horror',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=27`
-        },
-        {
-            'title' : 'romance',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=10749`
-        },
-        {
-            'title' : 'mystery',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=9648`
-        },
-        {
-            'title' : 'sci-fi',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=878`
-        },
-        {
-            'title' : 'western',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=37`
-        },
-        {
-            'title' : 'animation',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=16`
-        },
-        {
-            'title' : 'tv movie',
-            'url' : `discover/movie?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&with_genres=10770`
-        }
-    ]
 
     let chosenType = categoryList.filter(item => {
         if(getType === item.title) {
@@ -92,10 +44,12 @@ const MovieContent = () => {
             setGetData(data);
     
         }
+
+        setType(getType);
     }, [data]);
 
 
-    let typeBtnList, movieList;
+    let movieList;
     
     if(getData !== null) {
         // console.log(getData);
@@ -113,18 +67,6 @@ const MovieContent = () => {
                 </div>
             )
         });
-
-        typeBtnList = categoryList.map(category => {
-            return(
-                <Link key={category.title} to={`/discover/movies/${category.title}`}>
-                    <div className={styles.typeBtn}>
-                        <p>
-                            {category.title}
-                        </p>
-                    </div>
-                </Link>
-            )
-        })
     }
 
     if (loading) return (
@@ -141,10 +83,7 @@ const MovieContent = () => {
 
     return(
         <section className={styles.movie_content}>
-            <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
-                <div className={styles.typeBtn_flex}>
-                    { typeBtnList }
-                </div>
+            <div className=''>
                 <div className={styles.movieList_grid}>
                     { movieList }
                 </div>

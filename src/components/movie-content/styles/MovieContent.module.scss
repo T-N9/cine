@@ -3,43 +3,7 @@
 @import '../../../styles/utilities';
 
 .movie_content {
-
-    .typeBtn_flex {
-        display: flex;
-        margin-bottom: 2rem;
-        
-        
-
-        @include m-breakpoint-down(large){
-            overflow-y: auto;
-            padding-bottom: 1rem;
-        }
-
-        >:not(:last-child) {
-            margin-right: 1rem;
-        }
-
-        .typeBtn {
-            color: $clr-wah;
-            border: 1px solid $clr-light;
-            border-radius: 50px;
-            padding: 5px 10px;
-            @include flex-center;
-            
-            font-weight: 700;
-
-            @include m-breakpoint-down(small){
-                min-width: 6rem;
-                font-size: 14px;
-                padding: 5px;
-            }
-
-            > p {
-                margin: 0;
-                text-transform: capitalize;
-            }
-        }
-    }
+    flex: 8;
 
     .card_wrapper {
         @include flex-center;
@@ -48,6 +12,7 @@
     .movieList_grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
+        grid-row-gap: 1rem;
 
         @include m-breakpoint-down(large){
             grid-template-columns: repeat(4, 1fr);
@@ -63,4 +28,6 @@
 
 .error_loading_section {
     min-height: 100vh;
+    min-width: calUni(991px);
+    @include flex-center;
 }

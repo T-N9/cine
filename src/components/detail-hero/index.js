@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch';
 import { CircularProgress } from '@mui/material';
 import { setImdbId, setMovieName, setYearReleased } from '../../redux/detailMovieTVSlice';
@@ -264,8 +265,11 @@ const DetailHero = (props) => {
                                     <p className={styles.genres}>
                                         {
                                             genres.map(item => {
+                                                let type = item === 'Science Fiction' ? 'Sci-fi' : item
                                                 return (
-                                                    <span key={item} className={styles.genre}>{item}</span>
+                                                    <Link key={item} to={`/discover/movies/${type.toLowerCase()}`}>
+                                                        <span  className={styles.genre}>{type}</span>
+                                                    </Link>
                                                 )
                                             }
                                             )}
