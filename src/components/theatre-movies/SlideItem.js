@@ -50,7 +50,12 @@ const SlideItem = (props) => {
                 return (item.type === 'Trailer' && item.official === true)
             });
 
-            trailer = trailer_official[0].key;
+            // trailer = trailer_official[0].key;
+            if (trailer_official[0]) {
+                trailer = trailer_official[0].key;
+            } else {
+                trailer = null;
+            }
         } else {
             trailer = null;
         }
