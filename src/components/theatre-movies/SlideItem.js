@@ -51,11 +51,14 @@ const SlideItem = (props) => {
             });
 
             // trailer = trailer_official[0].key;
-            if (trailer_official[0]) {
-                trailer = trailer_official[0].key;
-            } else {
+            if(trailer_official.length > 0) {
+                if (trailer_official[0]) {
+                    trailer = trailer_official[0].key;
+                } 
+            }else {
                 trailer = null;
             }
+
         } else {
             trailer = null;
         }
