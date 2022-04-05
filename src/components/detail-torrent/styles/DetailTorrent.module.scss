@@ -1,0 +1,39 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+@import '../../../styles/utilities';
+
+.torrent_wrapper {
+    margin: 1rem 0;
+
+    > h1 {
+        margin-bottom: 5px;
+    }
+
+    .torrents {
+        
+        display: flex;
+        flex-wrap: wrap;
+
+        > :not(:last-child) {
+            margin-right: 5px;
+        }
+        .torrent_item {
+            background: linear-gradient(1turn,$clr-primary,$clr-light);
+            margin-bottom: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+
+            .type {
+                text-transform: capitalize;
+            }
+
+            .quality {
+                font-weight: bold;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

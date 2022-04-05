@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/DetailHero.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch';
+import DetailTorrent from '../detail-torrent';
 import { CircularProgress } from '@mui/material';
 import { setImdbId, setMovieName, setYearReleased } from '../../redux/detailMovieTVSlice';
 import { AccessTimeSharp, StarRateRounded, People, InsertPhoto } from '@mui/icons-material';
@@ -11,15 +12,16 @@ import DetailTrailer from '../detail-trailer';
 
 const DetailHero = (props) => {
 
+    let { id, media_type } = props;
+
     const [getData, setGetData] = useState(null);
     const [showTrailer, setShowTrailer] = useState(false);
-    const { torrents } = useSelector((state) => state.detail_movie_tv);
 
     let urlLink;
-    if (props.media_type === 'movie') {
-        urlLink = `https://api.themoviedb.org/3/movie/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`;
+    if (media_type === 'movie') {
+        urlLink = `https://api.themoviedb.org/3/movie/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases`;
     } else {
-        urlLink = `https://api.themoviedb.org/3/tv/${props.id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`;
+        urlLink = `https://api.themoviedb.org/3/tv/${id}?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&append_to_response=videos,releases,content_ratings`;
     }
 
     const { loading, data, error } = useFetch(urlLink);
@@ -29,16 +31,13 @@ const DetailHero = (props) => {
         if (data != null) {
             setGetData(data);
 
-            if (props.media_type === 'movie') {
+            if (media_type === 'movie') {
                 dispatch(setMovieName(data.title));
                 dispatch(setImdbId(data.imdb_id));
                 dispatch(setYearReleased(data.release_date.substring(0, 4)));
             }
-
         }
-    }, [data, dispatch, props.media_type]);
-
-
+    }, [data, dispatch, media_type]);
 
     let title,
         backdrop_path,
@@ -52,9 +51,9 @@ const DetailHero = (props) => {
         rating,
         popularity,
         status,
+        imdb_id,
         tagline,
         trailer,
-        media_type,
         first_air_date,
         episode_run_time;
 
@@ -63,6 +62,7 @@ const DetailHero = (props) => {
 
         backdrop_path = getData.backdrop_path;
         poster_path = getData.poster_path;
+        imdb_id = getData.imdb_id;
 
         const findOtherRatings_tv = () => {
             let getRating = getData.content_ratings.results;
@@ -88,7 +88,7 @@ const DetailHero = (props) => {
 
         }
 
-        if (props.media_type === 'movie') {
+        if (media_type === 'movie') {
             function checkMovieRating() {
                 let rating_arr = [];
 
@@ -268,7 +268,7 @@ const DetailHero = (props) => {
                                                 let type = item === 'Science Fiction' ? 'Sci-fi' : item
                                                 return (
                                                     <Link key={item} to={`/discover/movies/${type.toLowerCase()}`}>
-                                                        <span  className={styles.genre}>{type}</span>
+                                                        <span className={styles.genre}>{type}</span>
                                                     </Link>
                                                 )
                                             }
@@ -325,8 +325,8 @@ const DetailHero = (props) => {
                                     View Trailer
                                 </Button>
 
-                                {
-                                    props.media_type === 'movie' &&
+                                {/* {
+                                    media_type === 'movie' &&
                                     (
                                         <div className={styles.torrent_wrapper}>
                                             <h1>Download</h1>
@@ -355,9 +355,16 @@ const DetailHero = (props) => {
                                             </div>
                                         </div>
                                     )
+                                } */}
+
+                                {
+                                    (media_type === 'movie' && title && imdb_id && release_year) &&
+                                    <DetailTorrent
+                                        imdb_id={imdb_id}
+                                        movie_name={title}
+                                        year={release_year}
+                                    />
                                 }
-
-
                             </div>
                         </div>
                     </div>

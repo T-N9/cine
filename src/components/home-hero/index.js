@@ -4,23 +4,21 @@ import useFetch from '../../hooks/useFetch';
 import SlideItem from './SlideItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useDispatch, useSelector } from 'react-redux';
+// redux actions
 import { setTrendingAll } from '../../redux/trendingAllSlice';
-
-// Import Swiper React components
+// swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-// import "swiper/swiper-bundle.min.css";
-import "swiper/css/pagination"
-
-// import Swiper core and required modules
+import "swiper/css/pagination";
 import SwiperCore, {
     Autoplay, Pagination, Navigation
 } from 'swiper';
-
-// install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
+/* 
+    HomeHero
+    - This is the sliding component displayed at the very top of HomePage
+    - To display TOP-5 trending list of MOVIE+SERIES
+*/
 const HomeHero = () => {
     const [getData, setGetData] = useState(null);
     const { loading, data, error } = useFetch('https://api.themoviedb.org/3/trending/all/day?api_key=68d49bbc8d40fff0d6cafaa7bfd48072');
@@ -33,6 +31,7 @@ const HomeHero = () => {
             setGetData(data.results); 
         }
 
+        // dispatch fetched data to redux
         if(trendingAllData === null) {
             dispatch(setTrendingAll(data));
         }
@@ -52,7 +51,8 @@ const HomeHero = () => {
 
     let slideItems;
     if (getData != null) {
-
+        // initializing a list of Slide Items
+        // - required SwiperSlide, SlideItem
         slideItems = trendingAllData.results.slice(0, 5).map(item => {
             return (
                 <SwiperSlide key={item.id}>
