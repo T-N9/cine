@@ -49,7 +49,7 @@
                 max-height: calc(450px);
                 width: calUni(300px);
                 height: calUni(450px);
-                
+                border-radius: 10px;
 
                 img {
                     border-radius: 10px;
@@ -140,22 +140,27 @@
                     }
                 }
 
-                .genre {
-                    padding: 2.5px 5px;
-                    border-radius: 20px;
-                    border: 1px solid $clr-gray;
-                    font-size: 14px;
-                    cursor: pointer;
-
-                    @include m-breakpoint-down(small) {
-                        margin-bottom: 5px;
+                .genres_list {
+                    .genre {
+                        padding: 2.5px 5px;
+                        border-radius: 20px;
+                        border: 1px solid $clr-gray;
+                        font-size: 14px;
+                        cursor: pointer;
+    
+                        @include m-breakpoint-down(small) {
+                            margin-bottom: 5px;
+                        }
+    
                     }
-
+                    
+                    > :not(:last-child) {
+                        margin-right: 5px;
+                    }
                 }
+                
 
-                > :not(:last-child) {
-                    margin-right: 5px;
-                }
+
             }
 
             .detail_neck {

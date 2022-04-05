@@ -263,16 +263,19 @@ const DetailHero = (props) => {
                                     }
 
                                     <p className={styles.genres}>
-                                        {
-                                            genres.map(item => {
-                                                let type = item === 'Science Fiction' ? 'Sci-fi' : item
-                                                return (
-                                                    <Link key={item} to={`/discover/movies/${type.toLowerCase()}`}>
-                                                        <span className={styles.genre}>{type}</span>
-                                                    </Link>
-                                                )
-                                            }
-                                            )}
+                                        <span className={styles.genres_list}>
+                                            {
+                                                genres.map(item => {
+                                                    let type = item === 'Science Fiction' ? 'Sci-fi' : item
+                                                    return (
+                                                        <Link key={item} to={`/discover/movies/${type.toLowerCase()}`}>
+                                                            <span className={styles.genre}>{type}</span>
+                                                        </Link>
+                                                    )
+                                                }
+                                                )}
+                                        </span>
+
                                     </p>
                                     {
                                         (runtime !== 'm' && runtime !== 'undefinedm') &&
