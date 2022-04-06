@@ -144,7 +144,7 @@
                     .genre {
                         padding: 2.5px 5px;
                         border-radius: 20px;
-                        border: 1px solid $clr-gray;
+                        border: 1px solid $clr-light;
                         font-size: 14px;
                         cursor: pointer;
     
@@ -171,6 +171,14 @@
 
                 @include m-breakpoint-down(small){
                     justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+
+                > * {
+                    @include m-breakpoint-down(small) {
+                        margin-bottom: 0.5rem; 
+                    }
+               
                 }
 
                 > p {
@@ -201,6 +209,7 @@
             .tagline {
                 font-style: italic;
                 color: $clr-gray;
+                font-weight: 700;
             }
 
             .overview {

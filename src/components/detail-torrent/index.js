@@ -22,7 +22,7 @@ const DetailTorrent = (props) => {
                         return movie.imdb_code === imdb_id;
                     })
 
-                    console.log(targetMovie);
+                    // console.log(targetMovie);
 
                     if (targetMovie[0] !== undefined) {
                         dispatch(setTorrents(targetMovie[0].torrents))
