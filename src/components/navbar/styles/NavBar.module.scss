@@ -64,6 +64,14 @@
                 // transform: translateY(0);
             }
 
+            &.hide {
+                @include m-breakpoint-down(large){
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+            }
+
             .nav_item {
                 position: relative;
                 text-transform: capitalize;

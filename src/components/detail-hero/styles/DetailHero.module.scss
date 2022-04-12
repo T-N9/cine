@@ -35,7 +35,7 @@
             background: linear-gradient(90deg, rgba($clr-black, 1) 20%, rgba($clr-black, 0.5) 66.08%, rgba($clr-black, 0.2) 100%);
         }
 
-        .flex_section{
+        .flex_section {
             display: flex;
 
             @include m-breakpoint-down(small) {
@@ -43,6 +43,7 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
             .detail_poster {
                 position: relative;
                 min-width: calUni(300px);
@@ -55,12 +56,19 @@
                     border-radius: 10px;
                 }
 
-            @include m-breakpoint-down(small) {
-                min-width: calUni(150px);
-                min-height: calc(225px);
-                width: calUni(150px);
-                height: calUni(225px);
-            }
+                @include m-breakpoint-down(lmedium){
+                    min-width: calUni(250px);
+                    min-height: calc(375px);
+                    width: calUni(250px);
+                    height: calUni(375px);
+                }
+
+                @include m-breakpoint-down(small) {
+                    min-width: calUni(150px);
+                    min-height: calc(225px);
+                    width: calUni(150px);
+                    height: calUni(225px);
+                }
             }
 
             .placeholder {
@@ -89,7 +97,7 @@
                     flex-wrap: wrap;
                 }
 
-                @include m-breakpoint-down(small){
+                @include m-breakpoint-down(small) {
                     margin-bottom: 1rem;
                 }
 
@@ -108,7 +116,7 @@
             .title {
                 font-size: $fs-32;
 
-                @include m-breakpoint-down(small){
+                @include m-breakpoint-down(small) {
                     font-size: $fs-26;
                 }
             }
@@ -123,7 +131,7 @@
                     margin: 0 !important;
                 }
 
-                @include m-breakpoint-down(small){
+                @include m-breakpoint-down(small) {
                     p {
                         font-size: 14px;
                     }
@@ -134,31 +142,40 @@
                 display: flex;
                 flex-wrap: wrap;
 
-                > * {
+                >* {
                     @include m-breakpoint-down(small) {
                         // margin-top: 1rem;
                     }
                 }
 
                 .genres_list {
+
+                    > a {
+                        display:inline-block;
+                        @include m-breakpoint-down(lmedium) {
+                            margin-bottom: 10px;
+
+                        }
+
+                    }
                     .genre {
                         padding: 2.5px 5px;
                         border-radius: 20px;
                         border: 1px solid $clr-light;
                         font-size: 14px;
                         cursor: pointer;
-    
+
                         @include m-breakpoint-down(small) {
                             margin-bottom: 5px;
                         }
-    
+
                     }
-                    
+
                     > :not(:last-child) {
                         margin-right: 5px;
                     }
                 }
-                
+
 
 
             }
@@ -169,23 +186,23 @@
                 align-items: center;
                 margin-bottom: 2rem;
 
-                @include m-breakpoint-down(small){
+                @include m-breakpoint-down(small) {
                     justify-content: space-between;
                     flex-wrap: wrap;
                 }
 
-                > * {
+                >div, p {
                     @include m-breakpoint-down(small) {
-                        margin-bottom: 0.5rem; 
+                        margin-bottom: 0.5rem;
                     }
-               
+
                 }
 
-                > p {
+                >p {
                     margin-bottom: 0;
                     margin-left: 20px;
 
-                    @include m-breakpoint-down(small){
+                    @include m-breakpoint-down(small) {
                         margin-left: 0
                     }
                 }
@@ -231,7 +248,7 @@
             }
 
             .info {
-                > div {
+                >div {
                     display: inline-flex;
                     justify-content: center;
                     align-items: center;

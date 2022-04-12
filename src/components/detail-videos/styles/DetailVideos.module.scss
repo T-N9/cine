@@ -7,7 +7,7 @@
     width: 100%;
     overflow-y: auto;
     border-radius: 10px;
-    background-color: $clr-black;
+    background-color: rgba($clr-black, 0.5);
     >:not(:last-child) {
         margin-right: 5px;
     }

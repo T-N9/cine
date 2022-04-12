@@ -60,7 +60,7 @@ const NavBar = () => {
                     </Link>
 
                     <div className={styles.nav_list}>
-                        <ul className={toggle ? `${styles.nav_items} ${styles.active}` : `${styles.nav_items}`}>
+                        <ul className={toggle ? `${styles.nav_items} ${styles.active}` : `${styles.nav_items} ${styles.hide}` }>
                             {navItems}
                         </ul>
 

@@ -12,8 +12,8 @@ import Pagination from '../pagination';
 
 const SearchSeries = (props) => {
 
-    const [ getData, setGetData ] = useState(null);
-    const [ page, setPage] = useState(1);
+    const [getData, setGetData] = useState(null);
+    const [page, setPage] = useState(1);
     const { current } = useSelector((state) => state.searchActive)
     const { loading, data, error } = useFetch(`https://api.themoviedb.org/3/search/tv?api_key=68d49bbc8d40fff0d6cafaa7bfd48072&query=${props.query}&page=${page}`);
 
@@ -25,36 +25,36 @@ const SearchSeries = (props) => {
     }
 
     useEffect(() => {
-        if(data != null) {
+        if (data != null) {
             setGetData(data);
             dispatch(setSerieQty(data.total_results));
         }
-    }, [data, page , dispatch]);
+    }, [data, page, dispatch]);
 
-    const pageClick =(page) => {
+    const pageClick = (page) => {
         setPage(page)
     }
 
     const goToBackPage = () => {
-        setPage( prev => prev-1)
+        setPage(prev => prev - 1)
     }
 
     const goToNextPage = () => {
-        setPage( prev => prev+1)
+        setPage(prev => prev + 1)
     }
 
-    let serieResults , total_pages;
-    if(getData != null) {
+    let serieResults, total_pages;
+    if (getData != null) {
 
         total_pages = getData.total_pages;
         serieResults = getData.results.map(serie => {
             return (
                 <div className={styles.card_wrapper} key={serie.id}>
-                    <Link  onClick={() => getItemInfo(serie.id)}  to={`/series/${serie.id}`}>
+                    <Link onClick={() => getItemInfo(serie.id)} to={`/series/${serie.id}`}>
                         <SearchResultCard
-                            title = {serie.title}
-                            image = {serie.poster_path}
-                            name = {serie.name}
+                            title={serie.title}
+                            image={serie.poster_path}
+                            name={serie.name}
                         />
                     </Link>
                 </div>
@@ -64,7 +64,7 @@ const SearchSeries = (props) => {
 
     if (loading) return (
         <section>
-            <CircularProgress/>
+            <CircularProgress />
         </section>
     );
     if (error) return (
@@ -74,24 +74,29 @@ const SearchSeries = (props) => {
     );
 
     return (
-        <section className={current === 'series' ? `${styles.serie_result_page}` : `${styles.serie_result_page} ${styles.d_none}`}>
-            <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
-                
-                <div className={styles.result_grid}>
-                    {serieResults}
-                </div>
+        <>
+            {
+                current === 'series' &&
+                <section className={styles.serie_result_page}>
+                    <div className={`${styles.container_x_md} ${styles.container_y_2}`}>
 
-                <Pagination 
-                    page = { page }
-                    pageClick = { pageClick }
-                    goToBackPage = { goToBackPage }
-                    goToNextPage = { goToNextPage }
-                    totalPages = {total_pages}
-                    query = {props.query}
-                    type="search"
-                />
-            </div>
-        </section>
+                        <div className={styles.result_grid}>
+                            {serieResults}
+                        </div>
+
+                        <Pagination
+                            page={page}
+                            pageClick={pageClick}
+                            goToBackPage={goToBackPage}
+                            goToNextPage={goToNextPage}
+                            totalPages={total_pages}
+                            query={props.query}
+                            type="search"
+                        />
+                    </div>
+                </section>
+            }
+        </>
     );
 }
 

@@ -10,7 +10,7 @@
     border-radius: 10px;
     color: $clr-black;
 
-    @include m-breakpoint-down(small) {
+    @include m-breakpoint-down(lmedium) {
         width :100% ;
     }
 

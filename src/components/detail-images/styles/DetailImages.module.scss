@@ -8,7 +8,7 @@
     display: inline-flex;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: $clr-black;
+    background-color: rgba($clr-black, 0.5);
 
     >:not(:last-child) {
         margin-right: 5px;
