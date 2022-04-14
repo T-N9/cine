@@ -22,7 +22,7 @@ const MovieDetail = () => {
         dispatch(activeNavItem("movies"));
     }, [ dispatch]);
 
-    let media_type = 'movie';
+    const media_type = 'movie';
 
     return (
         <>

@@ -7,6 +7,8 @@ import { DetailHero, DetailCasts, DetailInfo , DetailImages, DetailVideos, Detai
 import { setItemId, setItemType } from '../redux/detailMovieTVSlice';
 
 const SeriesDetail = () => {
+    const media_type = 'tv';
+
     let { item_id, item_type } = useSelector((state) => state.detail_movie_tv);
     const dispatch = useDispatch();
     let { id } = useParams();
@@ -22,10 +24,10 @@ const SeriesDetail = () => {
         dispatch(activeNavItem("series"))
     }, [dispatch]);
 
-    let media_type = 'tv';
+    
 
     return (
-        <div>
+        <>
             <DetailHero
                 id = {item_id}
                 media_type = {item_type}
@@ -55,7 +57,7 @@ const SeriesDetail = () => {
                 media_type = {media_type}
             />
             <Footer/>
-        </div>
+        </>
     );
 }
 

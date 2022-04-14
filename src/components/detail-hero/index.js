@@ -186,7 +186,7 @@ const DetailHero = (props) => {
 
         first_air_date = getData.first_air_date;
         episode_run_time = getData.episode_run_time;
-        media_type = "movie";
+        // media_type = "movie";
 
     }
 
