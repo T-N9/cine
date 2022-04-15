@@ -43,6 +43,12 @@
             .current {
                 font-size: $fs-16;
                 
+                display: flex;
+
+                > span {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                }
 
                 .keywords_flex {
                     display: flex;

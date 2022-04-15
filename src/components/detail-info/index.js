@@ -962,11 +962,16 @@ const DetailInfo = (props) => {
         language,
         budget,
         revenue,
-        keywords;
+        keywords,
+        type,
+        networks;
 
     if (getData !== null) {
 
         homepage = data.homepage;
+        // console.log(getData);
+        networks = data.networks;
+        type = data.type;
 
         if (data.external_ids) {
             facebook = data.external_ids.facebook_id;
@@ -976,34 +981,34 @@ const DetailInfo = (props) => {
         }
 
         status = data.status;
-        let getLanguage= languages.filter(item => {
+        let getLanguage = languages.filter(item => {
             return item.iso_639_1 === data.original_language
         })
         language = getLanguage[0].english_name;
         data.budget && (budget = `$${data.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
         data.revenue && (revenue = `$${data.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
 
-        data.keywords.keywords && 
-        (
-            keywords= data.keywords.keywords.map(item => {
-            return (
-                <span key={item.name} className={styles.keyword}>
-                    {item.name}
-                </span>
+        data.keywords.keywords &&
+            (
+                keywords = data.keywords.keywords.map(item => {
+                    return (
+                        <span key={item.name} className={styles.keyword}>
+                            {item.name}
+                        </span>
+                    )
+                })
             )
-            })
-        )
 
-        data.keywords.results && 
-        (
-            keywords= data.keywords.results.map(item => {
-            return (
-                <span key={item.name} className={styles.keyword}>
-                    {item.name}
-                </span>
+        data.keywords.results &&
+            (
+                keywords = data.keywords.results.map(item => {
+                    return (
+                        <span key={item.name} className={styles.keyword}>
+                            {item.name}
+                        </span>
+                    )
+                })
             )
-            })
-        )
 
         keywords.length === 0 && (keywords = null);
     }
@@ -1066,6 +1071,36 @@ const DetailInfo = (props) => {
                                 {language}
                             </p>
                         </div>
+                        {
+                            networks &&
+                            <div className={styles.state_wrapper}>
+                                <p className={styles.name}>
+                                    Networks
+                                </p>
+                                <div className={styles.current}>
+                                    {networks.map(item => {
+                                        return(
+                                            <span key={item.name}>
+                                                <img src={`https://www.themoviedb.org/t/p/h30${item.logo_path}`} alt={item.name} />
+                                            </span>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        }
+
+                        {
+                            type &&
+                            <div className={styles.state_wrapper}>
+                                <p className={styles.name}>
+                                    Type
+                                </p>
+                                <p className={styles.current}>
+                                    {type}
+                                </p>
+                            </div>
+                        }
+
 
                         {
                             props.media_type === 'movie' &&
@@ -1075,12 +1110,12 @@ const DetailInfo = (props) => {
                                 </p>
                                 <p className={styles.current}>
                                     {
-                                    budget ? budget : '-'
+                                        budget ? budget : '-'
                                     }
                                 </p>
                             </div>
                         }
-                        
+
                         {
                             props.media_type === 'movie' &&
                             <div className={styles.state_wrapper}>
@@ -1089,13 +1124,13 @@ const DetailInfo = (props) => {
                                 </p>
                                 <p className={styles.current}>
                                     {
-                                    revenue ? revenue : '-'
-                                    
+                                        revenue ? revenue : '-'
+
                                     }
                                 </p>
                             </div>
                         }
-                        
+
                         <div className={styles.state_wrapper}>
                             <p className={styles.name}>
                                 Keywords
@@ -1103,12 +1138,12 @@ const DetailInfo = (props) => {
                             <p className={styles.current}>
                                 <span className={styles.keywords_flex}>
                                     {
-                                     keywords === null ?
-                                     "No keywords have been added." : keywords
+                                        keywords === null ?
+                                            "No keywords have been added." : keywords
                                     }
-                                </span>  
+                                </span>
                             </p>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </section>
