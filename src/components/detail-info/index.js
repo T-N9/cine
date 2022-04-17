@@ -985,8 +985,11 @@ const DetailInfo = (props) => {
             return item.iso_639_1 === data.original_language
         })
         language = getLanguage[0].english_name;
-        data.budget && (budget = `$${data.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
-        data.revenue && (revenue = `$${data.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
+        // data.budget && (budget = `$${data.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
+        // data.revenue && (revenue = `$${data.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`);
+
+        data.budget && (budget = `$${data.budget.toLocaleString()}`);
+        data.revenue && (revenue = `$${data.revenue.toLocaleString()}`);
 
         data.keywords.keywords &&
             (

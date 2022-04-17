@@ -9,7 +9,7 @@ const SearchResultCard = (props) => {
                 {
                     props.image !== null ?
                     <img
-                        src={`https://www.themoviedb.org/t/p/w154/${props.image}`} 
+                        src={`https://www.themoviedb.org/t/p/w185/${props.image}`} 
                         alt={`${props.title} poster`} 
                         className={styles.image}
                     /> :
