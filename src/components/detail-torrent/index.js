@@ -47,7 +47,7 @@ const DetailTorrent = (props) => {
                 <div className={styles.torrents}>
                     {
                         loading &&
-                        <p>Getting torrents</p>
+                        <p className={styles.loading}>Getting torrents 😉</p>
                     }
                     {
                         (getData !== [] && getData !== null) &&
@@ -69,7 +69,7 @@ const DetailTorrent = (props) => {
                     }
                     {
                         (!loading && getData === null) && 
-                        <p>No torrents found!</p>
+                        <p>No torrents found! 😢</p>
                     }
                 </div>
             </div>
